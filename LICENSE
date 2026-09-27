@@ -1,0 +1,292 @@
+Copyright (c) 2026-present Cheeter Technologies. All rights reserved.
+
+This License applies to the entire project, with the exception of files located
+in src/adblocker/, which are licensed under the Mozilla Public License 2.0.
+See src/adblocker/LICENSE for details.
+
+Cheeter Source-Available License 1.0 (CSAL 1.0)
+================================================
+
+1. DEFINITIONS
+--------------
+
+"Licensor" means Cheeter Technologies.
+
+"Software" means the Cheeter Navigator source code, binaries, assets,
+documentation, build scripts, user-interface materials, and other materials
+distributed by the Licensor under this License.
+
+"Original Software" means the Software as distributed by the Licensor.
+
+"Derivative Work" means any work based on, incorporating, modifying, or
+containing a substantial portion of the Software.
+
+"Fork" means a separately distributed version or Derivative Work of the
+Software.
+
+"Contributor" means any person or legal entity that submits code, patches,
+assets, documentation, or other material intended for inclusion in the
+Software.
+
+2. GRANT OF RIGHTS
+------------------
+
+Subject to the conditions of this License, the Licensor grants you a
+worldwide, non-exclusive, non-transferable, royalty-free license to:
+
+(a) access and use the Software;
+
+(b) copy the Software;
+
+(c) modify the Software;
+
+(d) create Derivative Works and Forks; and
+
+(e) distribute the Software and Derivative Works solely in accordance with
+    this License.
+
+This license grant applies only to rights owned or controlled by the Licensor.
+It does not grant rights to third-party trademarks, third-party software,
+patents, or other materials that are not controlled by the Licensor.
+
+3. PERMITTED USE
+----------------
+
+3.1 PRIVATE USE
+
+Private, non-commercial use of the Software is permitted, subject to all
+conditions of this License.
+
+3.2 CONTRIBUTIONS
+
+You may use and modify the source code for the purpose of contributing changes
+to the official Cheeter Navigator project.
+
+3.3 FORKS AND DERIVATIVE WORKS
+
+You may create a Fork or Derivative Work only if all of the following
+conditions are satisfied:
+
+(a) The complete corresponding source code of the Fork or Derivative Work is
+    made publicly available.
+
+(b) The Fork or Derivative Work is distributed under this License in its
+    entirety and is not relicensed under different terms.
+
+(c) The Fork or Derivative Work is not used for a commercial purpose.
+
+(d) All changes are documented as required by Section 6.
+
+(e) All attribution requirements in Section 5 are preserved.
+
+4. RESTRICTIONS
+---------------
+
+4.1 COMMERCIAL USE
+
+Commercial use of the Software, any Fork, or any Derivative Work is
+prohibited without the prior written permission of Cheeter Technologies.
+
+Commercial use includes, without limitation:
+
+(a) selling or licensing the Software;
+
+(b) offering the Software as a paid service;
+
+(c) using the Software to generate revenue;
+
+(d) distributing the Software as part of a commercial product or bundle; or
+
+(e) monetizing a Fork or Derivative Work.
+
+4.2 STANDALONE REDISTRIBUTION
+
+Creating and distributing a standalone version of the Software, separate from
+or in place of the official Cheeter Navigator release, requires prior written
+permission from Cheeter Technologies.
+
+4.3 LICENSE CHANGES
+
+You may not sublicense, relicense, or distribute the Software, a Fork, or a
+Derivative Work under terms that remove, weaken, or conflict with this
+License.
+
+4.4 ATTRIBUTION AND BRANDING
+
+You may not remove, obscure, replace, or alter existing credits, copyright
+notices, or references to Cheeter Technologies or Cheeter Navigator.
+
+Nothing in this License grants permission to use the names, logos, trademarks,
+or branding of Cheeter Technologies or Cheeter Navigator for endorsement,
+promotion, or identification of a modified product without prior written
+permission.
+
+A Fork or Derivative Work must not falsely imply that it is an official
+release of Cheeter Navigator or that it is endorsed by Cheeter Technologies.
+
+5. ATTRIBUTION REQUIREMENTS
+---------------------------
+
+5.1 NAME PRESERVATION
+
+The name "Cheeter Navigator" must remain clearly identified in all locations
+where the original Software refers to the browser, including, where
+applicable:
+
+(a) the application name;
+
+(b) the title bar and operating-system application identification;
+
+(c) onboarding screens and first-run dialogs;
+
+(d) the About page;
+
+(e) user-interface text;
+
+(f) documentation;
+
+(g) source-code comments;
+
+(h) build scripts; and
+
+(i) marketing or informational materials referring to the original Software.
+
+This requirement does not prevent Cheeter Technologies from granting written
+permission for a different name or branding arrangement.
+
+5.2 CREDIT RETENTION
+
+All existing credits to Cheeter Technologies must be retained in every copy,
+Fork, and Derivative Work. Additional credits may be added, but existing
+credits may not be removed or replaced.
+
+6. DOCUMENTATION OF CHANGES
+---------------------------
+
+6.1 CHANGES FILE
+
+Every Fork or Derivative Work must include a file named "changes.md" in its
+root directory.
+
+The file must contain a clear, human-readable record of all modifications
+made relative to the Original Software. Each entry must include, at minimum:
+
+(a) a description of the change;
+
+(b) the date on which the change was made; and
+
+(c) the name or handle of the person or organization responsible for the
+    change.
+
+6.2 INLINE COMMENTS
+
+Modified source-code sections must include inline comments, placed directly
+adjacent to the modified code where reasonably practicable, identifying:
+
+(a) what was changed;
+
+(b) why the change was made, to the extent reasonably possible; and
+
+(c) who made the change.
+
+This requirement does not require disclosure of information that the person
+making the change is legally prohibited from disclosing.
+
+7. CONTRIBUTIONS
+-----------------
+
+7.1 CONTRIBUTION LICENSE
+
+By submitting a Contribution to the official Cheeter Navigator project, the
+Contributor grants Cheeter Technologies a worldwide, perpetual, irrevocable,
+non-exclusive, royalty-free license to use, reproduce, modify, prepare
+Derivative Works of, publicly display, publicly perform, distribute, and
+sublicense the Contribution as part of the Software.
+
+Unless the Contributor and Cheeter Technologies agree otherwise in writing,
+the Contribution will be distributed under this License.
+
+7.2 CONTRIBUTOR REPRESENTATIONS
+
+Each Contributor represents that:
+
+(a) the Contributor has the legal right to submit the Contribution;
+
+(b) the Contribution does not knowingly violate the rights of any third party;
+    and
+
+(c) the Contributor has identified any material third-party licensing
+    restrictions known to the Contributor.
+
+7.3 THIRD-PARTY CONTRIBUTIONS
+
+Cheeter Technologies does not guarantee that Contributions made by third
+parties are correct, secure, legally usable, or suitable for any particular
+purpose.
+
+Users who build, run, or distribute versions containing third-party
+Contributions do so at their own risk.
+
+7.4 CONTRIBUTOR INDEMNIFICATION
+
+To the extent permitted by applicable law, a Contributor agrees to indemnify
+and hold harmless Cheeter Technologies, its founders, employees, and
+affiliates against third-party claims arising directly from the Contributor's
+intentional infringement, fraud, or material breach of the representations in
+Section 7.2.
+
+This clause does not make a Contributor responsible for defects, security
+issues, or other problems caused by unrelated changes made by other persons.
+
+8. DISCLAIMER OF WARRANTIES
+---------------------------
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, RELIABILITY,
+SECURITY, OR SUITABILITY FOR ANY PARTICULAR PURPOSE.
+
+CHEETER TECHNOLOGIES DOES NOT WARRANT THAT THE SOFTWARE WILL OPERATE WITHOUT
+INTERRUPTION, BE ERROR-FREE, OR BE FREE FROM SECURITY VULNERABILITIES.
+
+9. LIMITATION OF LIABILITY
+--------------------------
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, CHEETER TECHNOLOGIES, ITS
+FOUNDERS, EMPLOYEES, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, CONSEQUENTIAL, OR OTHER DAMAGES,
+INCLUDING LOSS OF DATA, PROFITS, REVENUE, BUSINESS, OR USE, ARISING OUT OF OR
+RELATED TO THE SOFTWARE, ITS USE, ITS DISTRIBUTION, OR ANY FORK OR DERIVATIVE
+WORK, REGARDLESS OF THE LEGAL THEORY AND EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGES.
+
+THIS LIMITATION APPLIES TO OFFICIAL RELEASES, CONTRIBUTIONS, FORKS, AND
+DERIVATIVE WORKS.
+
+10. TERMINATION
+---------------
+
+10.1 Your rights under this License terminate automatically if you materially
+     breach any provision of this License.
+
+10.2 Upon termination, you must cease distributing the Software, Forks, and
+     Derivative Works.
+
+10.3 You may retain copies solely to the extent required by applicable law or
+     for archival purposes, provided that you do not continue using or
+     distributing them in breach of this License.
+
+10.4 Sections 5, 6, 7, 8, 9, and 10 survive termination.
+
+11. GOVERNING INTERPRETATION
+----------------------------
+
+This License is intended to govern copyright permissions and restrictions for
+the Software. It does not grant trademark rights and does not replace any
+separate trademark, contributor, privacy, or distribution policy adopted by
+Cheeter Technologies.
+
+================================================
+Cheeter Source-Available License 1.0
+Copyright (c) 2026-present Cheeter Technologies.
+================================================

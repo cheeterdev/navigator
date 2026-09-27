@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mail Einstellungen</title>
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div id="mail-app">
+    <header>
+      <div class="header-content">
+        <h1>Einstellungen</h1>
+        <button id="back-btn" title="Zurück">← Zurück</button>
+      </div>
+    </header>
+
+    <div id="status" style="padding: 0 16px; margin: 8px 0; font-size: 0.9rem; opacity: 0.7;"></div>
+
+    <details id="accounts-panel" open>
+      <summary>Mail-Konten</summary>
+      <div class="source-controls">
+        <div class="toolbar">
+          <select id="protocol" aria-label="Protokoll">
+            <option value="pop3">POP3</option>
+            <option value="imap">IMAP</option>
+          </select>
+          <input id="host" placeholder="Server" aria-label="Mailserver" />
+          <input id="port" placeholder="Port" aria-label="Port" />
+        </div>
+        <div class="toolbar">
+          <input id="username" placeholder="Benutzername" aria-label="Benutzername" />
+          <input id="password" type="password" placeholder="Passwort" aria-label="Passwort" />
+          <button id="add-account">+</button>
+        </div>
+        <label class="tls-toggle"><input id="use-tls" type="checkbox" checked /> TLS</label>
+      </div>
+      <div id="accounts"></div>
+    </details>
+
+    <div id="mail-body">
+      <div class="mail-toolbar">
+        <button id="refresh-mail">Refresh</button>
+      </div>
+      <div id="account-info"></div>
+      <div id="messages"></div>
+    </div>
+  </div>
+
+  <script src="mail.js"></script>
+</body>
+</html>

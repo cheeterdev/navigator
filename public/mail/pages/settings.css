@@ -1,0 +1,378 @@
+:root {
+    --bg-main: #0f0f0f;
+    --bg-toolbar: #1d1d1d;
+    --bg-element-hover: #2a2a2a;
+    --bg-input: #111;
+    --border-color: #2a2a2a;
+    --text-color: #e5e5e5;
+    --bg-titlebar: var(--bg-input);
+}
+
+/* THEMES */
+body.theme-blue {
+    --bg-main: #0b1220;
+    --bg-toolbar: #0e1a33;
+    --bg-element-hover: #1b3a6b;
+    --bg-input: #0a1429;
+    --border-color: #1f3f77;
+    --text-color: #eaf1ff;
+    --bg-titlebar: #0a1429;
+}
+
+body.theme-green {
+    --bg-main: #0f1a14;
+    --bg-toolbar: #14261c;
+    --bg-element-hover: #1f4d35;
+    --bg-input: #0c1f16;
+    --border-color: #295c44;
+    --text-color: #eafff2;
+    --bg-titlebar: #0c1f16;
+}
+
+body.theme-red {
+    --bg-main: #1a0f10;
+    --bg-toolbar: #261415;
+    --bg-element-hover: #4d1f22;
+    --bg-input: #1f0c0d;
+    --border-color: #5c292c;
+    --text-color: #ffeaea;
+    --bg-titlebar: #1f0c0d;
+}
+
+body.theme-orange {
+    --bg-main: #1a140c;
+    --bg-toolbar: #261c10;
+    --bg-element-hover: #5c3a1a;
+    --bg-input: #1f150a;
+    --border-color: #6b4620;
+    --text-color: #fff2e0;
+    --bg-titlebar: #1f150a;
+}
+
+body.theme-purple {
+    --bg-main: #140f1a;
+    --bg-toolbar: #1e1626;
+    --bg-element-hover: #3a1f4d;
+    --bg-input: #130c1f;
+    --border-color: #4a2966;
+    --text-color: #f5eaff;
+    --bg-titlebar: #130c1f;
+}
+
+body.theme-pink {
+    --bg-main: #1a0f15;
+    --bg-toolbar: #261018;
+    --bg-element-hover: #5c1f3a;
+    --bg-input: #1f0c14;
+    --border-color: #6b2946;
+    --text-color: #ffeaf4;
+    --bg-titlebar: #1f0c14;
+}
+
+body.theme-yellow {
+    --bg-main: #1a1710;
+    --bg-toolbar: #262210;
+    --bg-element-hover: #5c563a;
+    --bg-input: #1f1c0a;
+    --border-color: #6b6644;
+    --text-color: #fff9e5;
+    --bg-titlebar: #1f1c0a;
+}
+
+body.theme-cyan {
+    --bg-main: #0f161a;
+    --bg-toolbar: #142026;
+    --bg-element-hover: #1f4d5c;
+    --bg-input: #0c1f26;
+    --border-color: #295c6b;
+    --text-color: #e5f9ff;
+    --bg-titlebar: #0c1f26;
+}
+
+body.theme-light {
+    --bg-main: #f5f5f5;
+    --bg-toolbar: #ffffff;
+    --bg-element-hover: #e5e5e5;
+    --bg-input: #f0f0f0;
+    --border-color: #d0d0d0;
+    --text-color: #434c57;
+    --bg-titlebar: #d0d0d0;
+}
+
+body.theme-oled {
+    --bg-main: #000000;
+    --bg-toolbar: #0a0a0a;
+    --bg-element-hover: #141414;
+    --bg-input: #050505;
+    --border-color: #1a1a1a;
+    --text-color: #ffffff;
+    --bg-titlebar: #000000;
+}
+
+/* Liquid Glass */
+body.theme-liquid-glass {
+    --bg-main: rgba(255, 255, 255, 0.02);
+    --bg-toolbar: rgba(255, 255, 255, 0.06);
+    --bg-element-hover: rgba(255, 255, 255, 0.10);
+    --bg-input: rgba(0, 0, 0, 0.18);
+    --border-color: rgba(255, 255, 255, 0.12);
+    --text-color: #0b1220;
+    --bg-titlebar: rgba(0, 0, 0, 0.18);
+}
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-main, #0b1220);
+      color: var(--text-color, #eaf1ff);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+#mail-app {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--bg-main);
+    overflow: hidden;
+}
+
+header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 14px 16px;
+    background: var(--bg-toolbar);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#back-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+#back-btn:hover {
+    background: var(--border-color);
+}
+
+#status {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+#accounts-panel {
+    border: 1px solid var(--border-color, #1f3f77);
+    border-radius: 14px;
+    background: var(--bg-toolbar, #0e1a33);
+    padding: 12px;
+}
+
+#accounts-panel summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+#accounts-panel summary::-webkit-details-marker {
+    display: none;
+}
+
+#accounts-panel summary::after {
+    content: '▾';
+    transition: transform 0.2s ease;
+    color: var(--text-color);
+}
+
+#accounts-panel[open] summary::after {
+    transform: rotate(-180deg);
+}
+
+.source-controls {
+    display: grid;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.toolbar {
+    display: grid;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.toolbar input,
+.toolbar select,
+.toolbar button,
+.refresh-sources,
+#refresh-mail {
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-titlebar);
+    color: var(--text-color);
+    padding: 10px 12px;
+    font-size: 0.95rem;
+}
+
+.toolbar input,
+.toolbar select {
+    background: var(--bg-input);
+    outline: none;
+}
+
+.toolbar input::placeholder {
+    color: rgba(234, 241, 255, 0.6);
+}
+
+.toolbar button,
+#refresh-mail {
+    cursor: pointer;
+}
+
+.toolbar button:hover,
+#refresh-mail:hover {
+    background: var(--bg-element-hover);
+}
+
+.tls-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+#accounts {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.account-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    background: var(--bg-main);
+    transition: background 0.2s ease;
+}
+
+.account-item > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.account-item strong {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.account-item > div:last-child {
+    display: flex;
+    gap: 8px;
+}
+
+.account-item button {
+    flex: 1;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-element-hover);
+    color: var(--text-color);
+    padding: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.account-item button:hover {
+    background: var(--text-color);
+    color: var(--bg-main);
+}
+
+#mail-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.mail-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+#account-info {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-toolbar);
+    padding: 14px;
+    font-size: 0.95rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+#messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.message-card {
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-toolbar);
+    word-break: break-word;
+}
+
+.message-card h2 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.message-card p, .message-card pre {
+    margin: 0;
+    color: var(--text-color);
+    opacity: 0.85;
+    font-size: 0.9rem;
+}

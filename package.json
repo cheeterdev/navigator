@@ -1,0 +1,103 @@
+{
+  "name": "cheeternavigator",
+  "productName": "Cheeter Navigator",
+  "version": "1.0.4",
+  "description": "Network Anonymization Vehicle, change the way you see.",
+  "homepage": "https://navigator.cheeter.de",
+  "main": ".vite/build/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "pack": "npm run package && electron-builder --dir",
+    "dist": "npm run package && electron-builder"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Cheeter",
+    "email": "hello@cheeter.de"
+  },
+  "license": "EULA",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.1",
+    "@electron-forge/maker-deb": "^7.11.1",
+    "@electron-forge/maker-rpm": "^7.11.1",
+    "@electron-forge/maker-squirrel": "^7.11.1",
+    "@electron-forge/maker-zip": "^7.11.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.11.1",
+    "@electron-forge/plugin-fuses": "^7.11.1",
+    "@electron-forge/plugin-vite": "^7.11.1",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^40.0.0",
+    "electron-builder": "^26.4.0",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "@ghostery/adblocker-electron": "^2.14.1",
+    "electron-squirrel-startup": "^1.0.1"
+  },
+  "build": {
+    "appId": "cheeternavigator",
+    "productName": "Cheeter Navigator",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      ".vite/**",
+      "package.json",
+      "index.html",
+      "public/**"
+    ],
+    "protocols": [
+      {
+        "name": "navigator",
+        "schemes": [
+          "navigator"
+        ]
+      },
+      {
+        "name": "http(s)",
+        "schemes": [
+          "http",
+          "https"
+        ]
+      }
+    ],
+    "fileAssociations": [
+      {
+        "ext": "html",
+        "name": "HTML Document",
+        "role": "Viewer",
+        "mimeType": "text/html"
+      }
+    ],
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "internet",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "linux": {
+      "icon": "build/icon.icns",
+      "target": [
+        "AppImage",
+        "deb",
+        "snap"
+      ]
+    }
+  },
+  "postinstall": "electron-builder install-app-deps"
+}

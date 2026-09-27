@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="settings.css">
+</head>
+<body class="theme-default">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <defs>
+        <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </symbol>
+        <symbol id="icon-add" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
+        </symbol>
+        <symbol id="icon-arrow_back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline>
+        </symbol>
+        <symbol id="icon-arrow_forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+        </symbol>
+        <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </symbol>
+        <symbol id="icon-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+        </symbol>
+        <symbol id="icon-visibility" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+        </symbol>
+        <symbol id="icon-syringe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m18 2 4 4"></path><path d="m17 7 3-3"></path><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path><path d="m9 11 4 4"></path><path d="m5 19-3 3"></path><path d="m14 4 6 6"></path>
+        </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect>
+        </symbol>
+        <symbol id="icon-tab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line>
+        </symbol>
+        <symbol id="icon-vpn_key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15.5 7.5 3 3L22 7l-3-3"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle>
+        </symbol>
+        <symbol id="icon-vpn_lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </symbol>
+        <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+        </symbol>
+        <symbol id="icon-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect>
+        </symbol>
+        <symbol id="icon-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15.5 7.5 3 3L22 7l-3-3"></path><path d="m21 2-9.6 9.6"></path><circle cx="7.5" cy="15.5" r="5.5"></circle>
+        </symbol>
+        <symbol id="icon-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path>
+        </symbol>
+        <symbol id="icon-extension" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.446-1.02.898A2.5 2.5 0 1 1 5 15.314c.452.18.824.527.898 1.02a1.026 1.026 0 0 0 .29.877l1.568 1.568c.47.47 1.087.706 1.704.706s1.233-.235 1.704-.706l1.611-1.611a.98.98 0 0 1 .837-.276c.47.07.802.48.968.925a2.501 2.501 0 1 0 3.214-3.214c-.446-.166-.855-.497-.925-.968a.979.979 0 0 1 .276-.837l1.61-1.61a2.404 2.404 0 0 1 1.705-.707 2.402 2.402 0 0 1 1.704.706l1.568 1.568a1.026 1.026 0 0 0 .877.29c.493-.074.84-.446 1.02-.898a2.5 2.5 0 0 0-1.745-4.498z"></path>
+        </symbol>
+        <symbol id="icon-delete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line>
+        </symbol>
+        <symbol id="icon-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle>
+        </symbol>
+        <symbol id="icon-error" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>
+        </symbol>
+        <symbol id="icon-cloud_off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3"></path><line x1="2" y1="2" x2="22" y2="22"></line>
+        </symbol>
+        <symbol id="icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+        </symbol>
+        <symbol id="icon-visibility_off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path><line x1="2" x2="22" y1="2" y2="22"></line><path d="M14.08 14.08A3 3 0 0 1 9.92 9.92"></path>
+        </symbol>
+        <symbol id="icon-theater_comedy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line>
+        </symbol>
+        <symbol id="icon-volunteer_activism" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+        </symbol>
+        <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </symbol>
+        <symbol id="icon-more_vert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle>
+        </symbol>
+        <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5"></circle><circle cx="17.5" cy="10.5" r=".5"></circle><circle cx="8.5" cy="7.5" r=".5"></circle><circle cx="6.5" cy="12.5" r=".5"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+        </symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </symbol>
+        <symbol id="icon-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path><path d="M16 21v-5h5"></path>
+        </symbol>
+        <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </symbol>
+        <symbol id="icon-tune" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line>
+        </symbol>
+        <symbol id="icon-favorite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
+        </symbol>
+        <symbol id="icon-swords" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline><line x1="13" y1="19" x2="19" y2="13"></line><line x1="16" y1="16" x2="20" y2="20"></line><line x1="19" y1="21" x2="21" y2="19"></line>
+        </symbol>
+        <symbol id="icon-eco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+        </symbol>
+        <symbol id="icon-water_drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path>
+        </symbol>
+        <symbol id="icon-sidebar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line>
+        </symbol>
+        <symbol id="icon-⚠️" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </symbol>
+        <symbol id="icon-❌" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line>
+        </symbol>
+        <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+        </symbol>
+    </defs>
+</svg>
+
+    
+    
+
+    <div id="settings-container">
+        <aside class="sidebar">
+            <nav id="sidebar-nav">
+                <div class="nav-group-label">Settings</div>
+                <a href="#general" class="nav-item active" data-section="general"><svg class="icon"><use href="#icon-settings"></use></svg> General</a>
+                <a href="#privacy" class="nav-item" data-section="privacy"><svg class="icon"><use href="#icon-shield"></use></svg> Privacy & Security</a>
+                <a href="#appearance" class="nav-item" data-section="appearance"><svg class="icon"><use href="#icon-palette"></use></svg> Appearance</a>
+                <a href="#search" class="nav-item" data-section="search"><svg class="icon"><use href="#icon-search"></use></svg> Search Engine</a>
+                <a href="#sync" class="nav-item" data-section="sync"><svg class="icon"><use href="#icon-sync"></use></svg> Sync</a>
+                
+                <hr class="nav-divider">
+                <div class="nav-group-label">Management</div>
+                <a href="#passwords" class="nav-item" data-section="passwords"><svg class="icon"><use href="#icon-key"></use></svg> Passwords</a>
+                <a href="#history" class="nav-item" data-section="history"><svg class="icon"><use href="#icon-history"></use></svg> History</a>
+                <a href="#bookmarks" class="nav-item" data-section="bookmarks"><svg class="icon"><use href="#icon-bookmark"></use></svg> Bookmarks <p style="margin-left: 10px; color: green;">[x]</p></a>
+                <a href="#extensions" class="nav-item" data-section="extensions"><svg class="icon"><use href="#icon-extension"></use></svg> Extensions <p style="margin-left: 10px; color: red;">[x]</p></a>
+                
+                <hr class="nav-divider">
+                <a href="#about" class="nav-item" data-section="about"><svg class="icon"><use href="#icon-info"></use></svg> About Navigator <p style="margin-left: 10px; color: yellow;">[x]</p></a>
+                <a href="#developer" id="nav-developer" class="nav-item" data-section="developer" style="display: none;"><svg class="icon"><use href="#icon-code"></use></svg> Developer</a>
+            </nav>
+        </aside>
+
+        <main class="content-area">
+            <div class="settings-wrapper" style="display:none;">
+                
+                <section id="general" class="settings-section active">
+                    <h1 class="page-title">General</h1>
+                    <div class="settings-group">
+                        <h2 class="group-label">Personalization</h2>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Your name</div><div class="card-desc">Optional — personalize your welcome message.</div></div>
+                            <div class="card-action">
+                                <input id="settings-username-input" class="select-field" type="text" placeholder="User" style="max-width:250px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <h2 class="group-label">On Startup</h2>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Restore last session</div><div class="card-desc">Automatically reopen tabs from your previous session.</div></div>
+                            <div class="card-action"><label class="switch"><input id="restore-last-session-checkbox" type="checkbox"><span class="slider"></span></label></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Open a specific set of pages</div><div class="card-desc">Set pages to open when Navigator starts.</div></div>
+                            <div class="card-action">
+                                <button id="set-startup-pages-btn" class="secondary-btn">Set pages</button>
+                                <div class="small-muted" id="startup-pages-count" style="margin-left:8px;font-size:12px;color:#888">0 pages</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Custom home page</div><div class="card-desc">Set a custom page when opening the browser.</div></div>
+                            <div class="card-action">
+                                <input id="custom-homepage-input" class="select-field" type="text" placeholder="space.cheeter.de">
+                                <div class="small-muted" id="custom-homepage-helper" style="margin-left:8px;font-size:12px;color:#888">Leave empty to use space.cheeter.de</div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Set as default browser</div><div class="card-desc">Make Navigator your system default browser.</div></div>
+                            <div class="card-action">
+                                <button id="make-default-settings-btn" class="secondary-btn">Set as default</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-info">
+                                <div class="card-title">Developer Mode</div>
+                                <div class="card-desc">Enable developer options and advanced diagnostics.</div>
+                            </div>
+                            <div class="card-action">
+                                <label class="switch"><input id="developer-mode-checkbox" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="privacy" class="settings-section">
+                    <h1 class="page-title">Privacy & Security</h1>
+                    <div class="settings-group">
+                        <h2 class="group-label">Privacy</h2>
+                        <div class="card" style="align-items:center;">
+                            <div class="card-info" style="flex:1;">
+                                <div class="card-title">Disposable Mode</div>
+                                <div class="card-desc">When enabled Navigator will return to the setup on next start.</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+                                <label class="switch"><input id="disposable-switch" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h2 class="group-label">Password Manager</h2>
+                        <div class="card" style="align-items:center; margin-top:8px;">
+                            <div class="card-info" style="flex:1;">
+                                <div class="card-title">Use KeePassXC</div>
+                                <div class="card-desc">Save/fill credentials with KeePassXC when password manager is active.</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+                                <label class="switch"><input id="keepassxc-switch" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                        <div class="card" style="align-items:center;">
+                            <div class="card-info" style="flex:1;">
+                                <div class="card-title">KeePassXC DB Path</div>
+                                <div class="card-desc">Absolute path to your KeePassXC database file.</div>
+                            </div>
+                            <div class="card-action" style="flex: 1; display:flex; justify-content:flex-end; gap:8px;">
+                                <input id="keepassxc-db-path" class="select-field" type="text" style="width:100%;" placeholder="/Users/you/keepassxc.kdbx">
+                            </div>
+                        </div>
+                        <div class="card" style="align-items:flex-start;">
+                            <div class="card-info" style="flex:1;">
+                                <div class="card-title">Stored Passwords</div>
+                                <div class="card-desc">KeePassXC entries pulled from your configured database.</div>
+                            </div>
+                            <div class="card-action" style="flex:1; display:flex; flex-direction:column; gap:8px; width:100%;">
+                                <button id="keepassxc-refresh-btn" class="secondary-btn" style="min-width:160px;">Refresh Entries</button>
+                                <div id="keepassxc-entries-list" style="margin-top:8px; max-height:260px; overflow:auto; width:100%; background:#1a1f26; border:1px solid rgba(255,255,255,.1); border-radius:6px; padding:10px;"></div>
+                                <div id="keepassxc-entries-status" style="font-size:12px;color:#999;margin-top:4px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <!-- Browser Spoofing -->
+                        <h2 class="group-label">Browser Spoofing</h2>
+                        <div class="card" style="align-items:center; margin-top:8px;">
+                            <div class="card-info" style="flex:1;">
+                                <div class="card-title">Browser Spoofing</div>
+                                <div class="card-desc">Appear as a different browser/device. Enable to choose options below.</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+                                <label class="switch"><input id="spoofing-switch" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                        <div id="spoofing-options" style="display:none; margin-top:8px;">
+                            <div class="card">
+                                <div class="card-info"><div class="card-title">Browser</div></div>
+                                <div class="card-action">
+                                    <select id="spoofing-browser-selector" class="select-field">
+                                        <option>Chrome</option>
+                                        <option>Firefox</option>
+                                        <option>Safari</option>
+                                        <option>Edge</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-info"><div class="card-title">Device</div></div>
+                                <div class="card-action">
+                                    <select id="spoofing-device-selector" class="select-field">
+                                        <option value="Desktop-Windows">Desktop (Windows)</option>
+                                        <option value="Desktop-MacOS">Desktop (MacOS)</option>
+                                        <option value="Desktop-Linux">Desktop (Linux)</option>
+                                        <option value="Mobile-iOS">Mobile (iOS)</option>
+                                        <option value="Mobile-Android">Mobile (Android)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-info"><div class="card-title">Mode</div></div>
+                                <div class="card-action">
+                                    <select id="spoofing-mode-selector" class="select-field">
+                                        <option value="light">Light Mode</option>
+                                        <option value="dark">Dark Mode</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-group">
+                        <h2 class="group-label">Data Manipulation</h2>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Time Interval</div><div class="card-desc">Manage the time until the Tab closes. (Seconds)</div></div>
+                            <input type="number" id="data-manipulation-interval" class="select-field" style="width:80px;" min="1" step="1">
+                        </div>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Search Engines</div><div class="card-desc">Manage the Search Engines to manipulate.</div></div>
+                            <button id="data-manipulation-search-engines-btn" class="secondary-btn" style="min-width:120px;">Configure</button>
+                        </div>
+                </section>
+
+                <section id="appearance" class="settings-section">
+                    <h1 class="page-title">Appearance</h1>
+                    <div class="settings-group">
+                        <h2 class="group-label">Theme Customization</h2>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Browser Theme</div><div class="card-desc">Change the overall color scheme of the UI.</div></div>
+                            <div class="card-action">
+                                <select class="select-field" id="theme-selector">
+                                    <option value="theme-default">Default Dark</option>
+                                    <option value="theme-oled">OLED (Pure Black)</option>
+                                    <option value="theme-light">Light Mode</option>
+                                    <option value="theme-blue">Deep Ocean</option>
+                                    <option value="theme-green">Emerald</option>
+                                    <option value="theme-red">Crimson</option>
+                                    <option value="theme-orange">Sunset</option>
+                                    <option value="theme-purple">Violet</option>
+                                    <option value="theme-pink">Rose</option>
+                                    <option value="theme-yellow">Sunflower</option>
+                                    <option value="theme-cyan">Cyan</option>
+                                    <option value="theme-liquid-glass">Liquid Glass</option>
+                                    <option value="theme-custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Custom Theme Colors</div><div class="card-desc">Customize the colors of the browser UI.</div></div>
+                            <input type="color" class="color-picker" id="primary-color-picker" title="Primary Color" value="#1E88E5">
+                    </div>
+                </section>
+
+                <section id="search" class="settings-section">
+                    <h1 class="page-title">Search Engine</h1>
+                    <div class="settings-group">
+                        <h2 class="group-label">Default Search Engine</h2>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Search engine used in address bar</div></div>
+                            <div class="card-action" style="display:flex;align-items:center;gap:8px;">
+                                <select class="select-field" id="search-engine-selector" style="flex:1;">
+                                    <optgroup label="Featured, Secure">
+                                        <option value="Cheeter Space">Cheeter Spaceᴰᴱ</option>
+                                        <option value="CGWeb">CGWebᴾᴴ</option>
+                                        <option value="Startpage">Startpageᴺᴸ</option>
+                                    </optgroup>
+                                    <optgroup label="3rd Party, Secure">
+                                        <option value="DuckDuckGo">DuckDuckGoᵘˢ</option>
+                                    </optgroup>
+                                    <optgroup label="3rd Party, Good cause">
+                                        <option value="Ecosia">Ecosiaᴰᴱ</option>
+                                        <option value="OceanHero">OceanHeroᴰᴱ</option>
+                                    </optgroup>
+                                    <optgroup label="3rd Party, Less Secure">
+                                        <option value="Bing">Bingᵘˢ</option>
+                                    </optgroup>
+                                    <option value="Custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Custom Search Engine</div><div class="card-desc">Paste a search URL template that includes <code>{search}</code>. Example: <code>https://example.org/search?q={search}</code></div></div>
+                            <div class="card-action">
+                                <input id="custom-search-engine-input" class="select-field" type="text" placeholder="https://example.org/search?q={search}">
+                                <div class="small-muted" id="custom-search-engine-helper" style="margin-left:8px;font-size:12px;color:#888">Leave empty to disable custom engine</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info"><div class="card-title">Show search suggestions <p style="margin-left: 10px; color: red;">[x]</p></div></div>
+                            <div class="card-action"><label class="switch"><input type="checkbox" checked><span class="slider"></span></label></div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <section id="sync" class="settings-section">
+                    <h1 class="page-title">Sync</h1>
+                    <div class="card sign-in-card">
+                        <div class="card-info">
+                            <div class="card-title">Access your data anywhere</div>
+                            <div class="card-desc">Sign in to sync bookmarks, history, and passwords across all your devices.</div>
+                        </div>
+                        <button class="primary-btn">Sign In to Navigator <p style="margin-left: 10px; color: red;">[x]</p></button>
+                    </div>
+                    <div class="settings-group">
+                        <h2 class="group-label">Sync Settings</h2>
+                        <div class="card disabled">
+                            <div class="card-info"><div class="card-title">Sync everything</div><div class="card-desc">Please sign in to enable this feature.</div></div>
+                            <div class="card-action"><label class="switch"><input type="checkbox" disabled><span class="slider"></span></label></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="passwords" class="settings-section">
+                    <div class="section-header-flex">
+                        <h1 class="page-title">Password Manager</h1>
+                        <div style="display:flex;align-items:center;gap:12px;margin-left:auto;">
+                            <button id="keepassxc-refresh-section-btn" class="secondary-btn">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="list-container" id="passwords-list">
+                        <div class="small-muted" id="passwords-empty">No password entries loaded. Enable KeePassXC and refresh.</div>
+                    </div>
+                </section>
+
+                <section id="history" class="settings-section">
+                    <div class="section-header-flex">
+                        <h1 class="page-title">History</h1>
+                        <div style="display:flex;align-items:center;gap:12px;margin-left:auto;">
+                            <div style="display:flex;align-items:center;gap:8px;">
+                                <label class="switch"><input id="save-history-checkbox" type="checkbox"><span class="slider"></span></label>
+                                <div class="small-muted" style="font-size:13px">Save browsing history</div>
+                            </div>
+                            <button id="clear-history-btn" class="secondary-btn red-text">Clear History</button>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="list-container" id="history-list">
+                        <div class="small-muted" id="history-empty" style="margin-left: 10px;"><br>No history available.<br><br></div>
+                    </div>
+                </section> 
+
+                <section id="bookmarks" class="settings-section">
+                    <h1 class="page-title">Bookmarks</h1>
+                    <div class="list-container">
+                        <div class="list-item">
+                            <span class="icon folder">folder</span>
+                            <div class="item-details"><div class="item-name">Work Projects</div><div class="item-sub">4 items</div></div>
+                            <svg class="icon"><use href="#icon-more_vert"></use></svg>
+                        </div>
+                        <div class="list-item">
+                            <svg class="icon"><use href="#icon-star"></use></svg>
+                            <div class="item-details"><div class="item-name">Stack Overflow</div><div class="item-sub">stackoverflow.com</div></div>
+                            <svg class="icon"><use href="#icon-more_vert"></use></svg>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="extensions" class="settings-section">
+                    <h1 class="page-title">Extensions</h1>
+                    <div class="extension-grid">
+                        <div class="ext-card">
+                            <div class="ext-header">
+                                <span class="icon ext-icon">shield</span>
+                                <label class="switch"><input id="ext-adblock-checkbox" type="checkbox" checked><span class="slider"></span></label>
+                            </div>
+                            <div class="ext-name">Navigator AdBlock</div>
+                            <div class="ext-desc">Blocks annoying ads and trackers on the web.</div>
+                            <div class="ext-footer">
+                                <button class="text-btn">Details</button>
+                                <button class="text-btn">Remove</button>
+                            </div>
+                        </div>
+                        <div class="ext-card">
+                            <div class="ext-header">
+                                <span class="icon ext-icon">dark_mode</span>
+                                <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                            </div>
+                            <div class="ext-name">Dark Reader</div>
+                            <div class="ext-desc">Enable dark mode for every website you visit.</div>
+                            <div class="ext-footer">
+                                <button class="text-btn">Details</button>
+                                <button class="text-btn">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="about" class="settings-section">
+                    <h1 class="page-title">About Navigator</h1>
+                    <div class="card">
+                        <div class="card-info">
+                            <div class="card-title" id="app-version">Version loading…</div>
+                            <div class="card-desc">Navigator is up to date.</div>
+                        </div>
+                        <button class="secondary-btn">Check for updates</button>
+                    </div>
+                </section>
+
+                <section id="developer" class="settings-section">
+                    <h1 class="page-title">Developer</h1>
+                    <div class="card">
+                        <div class="card-info">
+                            <div class="card-title">Developer Options</div>
+                            <div class="card-desc">Developer mode is active. Advanced developer settings will be available here soon.</div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Authentication gate: dedicated page shown before entering settings -->
+    <section id="auth-gate" class="settings-section" style="display:none;" aria-labelledby="auth-title">
+        <div style="max-width:640px;margin:60px auto;padding:28px;border-radius:8px;background:var(--bg-main,#0f1720);color:var(--text-color,#eaf1ff);box-shadow:0 10px 30px rgba(0,0,0,0.6);">
+            <h1 id="auth-title" class="page-title" style="margin-top:0;">Authenticate to access Settings</h1>
+            <p style="color:#cbd5e1;margin-top:8px;">Please authenticate with your computer credentials to view and change settings.</p>
+
+            <div id="auth-inputs" style="margin-top:18px;">
+                <input id="auth-password-input" type="password" autocomplete="current-password" placeholder="System password" style="width:100%;padding:10px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit;" />
+                <div id="auth-error" style="color:#ff6b6b;font-size:13px;display:none;margin-top:8px;"></div>
+            </div>
+
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:18px;">
+                <button id="auth-cancel" class="secondary-btn">Cancel</button>
+                <button id="auth-confirm" class="primary-btn">Authenticate</button>
+            </div>
+
+            <p style="margin-top:12px;font-size:12px;color:#98a1ad">Your password is used only to verify your identity and is not stored.</p>
+        </div>
+    </section>
+
+    <script>
+        // Sidebar Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                const target = this.getAttribute('data-section');
+                document.querySelectorAll('.settings-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // Helper: select a section programmatically (used for hash navigation)
+        function selectSection(name) {
+            if (!name) return;
+            const nav = document.querySelector(`.nav-item[data-section="${name}"]`);
+            if (nav) nav.click();
+        }
+
+        function applyHash() {
+            try {
+                const h = (window.location.hash || '').replace(/^#/, '');
+                if (h) selectSection(h);
+            } catch (e) {}
+        }
+
+        // Apply hash on initial load and when hash changes
+        applyHash();
+        window.addEventListener('hashchange', applyHash);
+
+        // Authentication gate logic: dedicated auth page before showing settings
+        (function(){
+            const authGate = document.getElementById('auth-gate');
+            const settingsWrapper = document.querySelector('.settings-wrapper');
+            const authPasswordInput = document.getElementById('auth-password-input');
+            const authConfirm = document.getElementById('auth-confirm');
+            const authCancel = document.getElementById('auth-cancel');
+            const authError = document.getElementById('auth-error');
+            if (!authGate || !authConfirm) return;
+
+            let supportsNative = false;
+            try {
+                const platform = (window.electronAPI && window.electronAPI.getPlatform) ? window.electronAPI.getPlatform() : (navigator.platform || '').toLowerCase();
+                supportsNative = (platform === 'darwin' || platform === 'linux' || platform === 'mac');
+            } catch (e) { supportsNative = false; }
+
+            function showAuthPage(){ if (settingsWrapper) settingsWrapper.style.display = 'none'; authGate.style.display = 'block'; if (!supportsNative && authPasswordInput) setTimeout(()=> authPasswordInput.focus(),100); }
+            function hideAuthPage(){ if (settingsWrapper) settingsWrapper.style.display = ''; authGate.style.display = 'none'; if (authPasswordInput) authPasswordInput.value = ''; authError.style.display = 'none'; try { applyHash(); } catch (e) {} }
+
+            // Platform tweak: hide manual input if native prompt will be used
+            if (supportsNative) {
+                if (authPasswordInput) authPasswordInput.style.display = 'none';
+                authConfirm.textContent = 'Authenticate (system)';
+            }
+
+            // Always require auth when opening settings: try native auth automatically; if that fails, show manual auth page.
+            (async function(){
+                try {
+                    if (supportsNative && window.electronAPI && window.electronAPI.authenticate) {
+                        try {
+                            const res = await window.electronAPI.authenticate();
+                            if (res && res.success) {
+                                // show settings
+                                hideAuthPage();
+                                return;
+                            }
+                            // native auth failed or was cancelled => navigate away
+                            window.location.href = 'about:blank';
+                            return;
+                        } catch (e) { /* continue to manual auth */ }
+                    }
+                } catch (e) {}
+                // show manual auth page
+                showAuthPage();
+
+                // Ensure subsequent programmatic 'auth-required' events still show auth page
+                if (window.electronAPI && window.electronAPI.onAuthRequired) window.electronAPI.onAuthRequired(() => { showAuthPage(); });
+            })();
+
+            authConfirm.addEventListener('click', async () => {
+                authConfirm.disabled = true;
+                authError.style.display='none';
+                try {
+                    if (window.electronAPI && window.electronAPI.authenticate) {
+                        const arg = supportsNative ? undefined : (authPasswordInput ? authPasswordInput.value || '' : '');
+                        const res = await window.electronAPI.authenticate(arg);
+                        if (res && res.success) { hideAuthPage(); authConfirm.disabled = false; return; }
+                        authError.textContent = 'Authentication failed — bitte überprüfe dein Passwort.';
+                        authError.style.display = 'block';
+                    } else {
+                        authError.textContent = 'Unable to authenticate (missing backend).';
+                        authError.style.display = 'block';
+                    }
+                } catch (e) {
+                    authError.textContent = 'Fehler: ' + (e && e.message ? e.message : 'unbekannt');
+                    authError.style.display='block';
+                }
+                authConfirm.disabled = false;
+                if (authPasswordInput) { authPasswordInput.value = ''; authPasswordInput.focus(); }
+            });
+
+            if (authPasswordInput) authPasswordInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { authConfirm.click(); } });
+
+            // If user cancels, navigate away in the SAME tab (no new tab)
+            authCancel.addEventListener('click', () => {
+                try { 
+                    if (window.electronAPI && window.electronAPI.closeOverlay) {
+                        window.electronAPI.closeOverlay();
+                    } else {
+                        window.location.href = 'about:blank'; 
+                    }
+                } catch (e) { /* ignore */ }
+            });
+        })();
+
+        // Theme Selector
+        (function(){
+            const themeSelector = document.getElementById('theme-selector');
+            const colorPicker = document.getElementById('primary-color-picker');
+
+            function applyTheme(value) { document.body.className = value || 'theme-default'; }
+            function saveTheme(value) {
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('theme', value);
+                    } else {
+                        localStorage.setItem('theme', value);
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            // color utilities
+            function hexToRgb(hex) {
+                hex = hex.replace('#','');
+                const bigint = parseInt(hex, 16);
+                return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+            }
+            function rgbToHex(r,g,b) {
+                return '#' + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+            }
+            function rgbToHsl(r,g,b){ r/=255; g/=255; b/=255; const max=Math.max(r,g,b), min=Math.min(r,g,b); let h,s,l=(max+min)/2; if(max===min){h=s=0;}else{const d=max-min; s = l>0.5 ? d/(2-max-min) : d/(max+min); switch(max){case r: h=(g-b)/d + (g < b ? 6 : 0); break; case g: h=(b-r)/d + 2; break; case b: h=(r-g)/d +4; break;} h/=6;} return {h: h, s: s, l: l}; }
+            function hslToRgb(h,s,l){ let r,g,b; if(s===0){r=g=b=l;} else {const hue2rgb=(p,q,t)=>{ if(t<0) t+=1; if(t>1) t-=1; if(t<1/6) return p + (q-p)*6*t; if(t<1/2) return q; if(t<2/3) return p + (q-p)*(2/3 - t)*6; return p; }; const q = l<0.5 ? l*(1+s) : l + s - l*s; const p = 2*l - q; r = hue2rgb(p,q,h + 1/3); g = hue2rgb(p,q,h); b = hue2rgb(p,q,h - 1/3);} return { r: Math.round(r*255), g: Math.round(g*255), b: Math.round(b*255) }; }
+            function adjustLightness(hex, deltaPercent){ const rgb = hexToRgb(hex); const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b); hsl.l = Math.max(0, Math.min(1, hsl.l + deltaPercent/100)); const rgb2 = hslToRgb(hsl.h, hsl.s, hsl.l); return rgbToHex(rgb2.r, rgb2.g, rgb2.b); }
+            function luminance(hex) { const {r,g,b}=hexToRgb(hex); const rs = r/255, gs = g/255, bs = b/255; const srgb=(v)=> v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4); const L = 0.2126*srgb(rs)+0.7152*srgb(gs)+0.0722*srgb(bs); return L; }
+
+            function applyCustomColors(hex){
+                if (!hex) return;
+                const primary = hex;
+                const bgToolbar = primary;
+                const bgMain = adjustLightness(primary, -18);
+                const bgElementHover = adjustLightness(primary, 10);
+                const bgInput = adjustLightness(primary, -8);
+                const borderColor = adjustLightness(primary, -28);
+                const bgTitlebar = adjustLightness(primary, -6);
+                const L = luminance(primary);
+                const textColor = L < 0.45 ? '#eaf1ff' : (L > 0.75 ? '#111111' : '#434c57');
+
+                const root = document.documentElement;
+                root.style.setProperty('--bg-toolbar', bgToolbar);
+                root.style.setProperty('--bg-main', bgMain);
+                root.style.setProperty('--bg-element-hover', bgElementHover);
+                root.style.setProperty('--bg-input', bgInput);
+                root.style.setProperty('--border-color', borderColor);
+                root.style.setProperty('--text-color', textColor);
+                root.style.setProperty('--bg-titlebar', bgTitlebar);
+            }
+
+            function saveThemeColor(hex){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('themeColor', hex);
+                        window.electronAPI.setSetting('theme', 'theme-custom');
+                    } else {
+                        localStorage.setItem('themeColor', hex);
+                        localStorage.setItem('theme', 'theme-custom');
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            if (!themeSelector) return;
+
+            // Load initial theme (from Electron settings or fallback to localStorage)
+            (function(){
+                function loadAndApply(s){
+                    const t = s && s.theme ? s.theme : (themeSelector.value || 'theme-default');
+                    themeSelector.value = t;
+                    applyTheme(t);
+                    if (t === 'theme-custom'){
+                        const c = (s && s.themeColor) ? s.themeColor : (localStorage.getItem('themeColor') || '#1E88E5');
+                        if (colorPicker) colorPicker.value = c;
+                        applyCustomColors(c);
+                    }
+                }
+
+                if (window.electronAPI && window.electronAPI.getSettings) {
+                    window.electronAPI.getSettings().then(loadAndApply).catch(() => { loadAndApply(null); });
+
+                    if (window.electronAPI.onSettingsUpdated) {
+                        window.electronAPI.onSettingsUpdated((s) => {
+                            const t = s && s.theme ? s.theme : 'theme-default';
+                            themeSelector.value = t;
+                            applyTheme(t);
+                            if (t === 'theme-custom'){
+                                const c = (s && s.themeColor) ? s.themeColor : (localStorage.getItem('themeColor') || '#1E88E5');
+                                if (colorPicker) colorPicker.value = c;
+                                applyCustomColors(c);
+                            }
+                        });
+                    }
+                } else {
+                    loadAndApply(null);
+                }
+            })();
+
+            themeSelector.addEventListener('change', function() {
+                const v = this.value;
+                applyTheme(v);
+                saveTheme(v);
+                if (v === 'theme-custom' && colorPicker) {
+                    const hex = colorPicker.value || '#1E88E5';
+                    applyCustomColors(hex);
+                    saveThemeColor(hex);
+                }
+            });
+
+            if (colorPicker) {
+                colorPicker.addEventListener('input', (e) => {
+                    const hex = e.target.value;
+                    applyCustomColors(hex);
+                });
+                colorPicker.addEventListener('change', (e) => {
+                    const hex = e.target.value;
+                    applyCustomColors(hex);
+                    saveThemeColor(hex);
+                    // ensure selector shows 'Custom'
+                    if (themeSelector) { themeSelector.value = 'theme-custom'; saveTheme('theme-custom'); applyTheme('theme-custom'); }
+                });
+            }
+        })();
+
+        // Search Engine selector wiring
+        (function(){
+            const selector = document.getElementById('search-engine-selector');
+            const DEFAULT_ENGINE = 'Cheeter Space';
+            if (!selector) return;
+
+            function saveEngine(v){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('searchEngine', v);
+                    } else {
+                        localStorage.setItem('searchEngine', v);
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            function loadAndApply(s){
+                const v = (s && s.searchEngine) ? s.searchEngine : (localStorage.getItem('searchEngine') || DEFAULT_ENGINE);
+                selector.value = v;
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => { selector.value = s && s.searchEngine ? s.searchEngine : (localStorage.getItem('searchEngine') || DEFAULT_ENGINE); });
+                }
+            } else {
+                loadAndApply(null);
+            }
+
+            const customInput = document.getElementById('custom-search-engine-input');
+            const customHelper = document.getElementById('custom-search-engine-helper');
+
+            function saveCustomEngine(tpl){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        if (!tpl) {
+                            window.electronAPI.setSetting('customSearchEngine', '');
+                            // revert engine to default
+                            window.electronAPI.setSetting('searchEngine', DEFAULT_ENGINE);
+                        } else {
+                            window.electronAPI.setSetting('customSearchEngine', tpl);
+                            window.electronAPI.setSetting('searchEngine', 'Custom');
+                        }
+                    } else {
+                        if (!tpl) {
+                            localStorage.removeItem('customSearchEngine');
+                            localStorage.setItem('searchEngine', DEFAULT_ENGINE);
+                            window.dispatchEvent(new CustomEvent('settings-changed', { detail: { searchEngine: DEFAULT_ENGINE, customSearchEngine: '' } }));
+                        } else {
+                            localStorage.setItem('customSearchEngine', tpl);
+                            localStorage.setItem('searchEngine', 'Custom');
+                            window.dispatchEvent(new CustomEvent('settings-changed', { detail: { searchEngine: 'Custom', customSearchEngine: tpl } }));
+                        }
+                    }
+                    if (customHelper) customHelper.textContent = tpl ? 'Custom engine saved.' : 'Custom engine removed.';
+                } catch (e) { console.error(e); }
+            }
+
+            function loadCustomFromSettings(s){
+                return (s && s.customSearchEngine) ? s.customSearchEngine : (localStorage.getItem('customSearchEngine') || '');
+            }
+
+            function loadAndApply(s){
+                const v = (s && s.searchEngine) ? s.searchEngine : (localStorage.getItem('searchEngine') || DEFAULT_ENGINE);
+                const custom = loadCustomFromSettings(s);
+                if (custom && customInput) customInput.value = custom;
+                // if saved engine is Custom, select it
+                selector.value = v;
+                if (v === 'Custom' && custom) {
+                    selector.value = 'Custom';
+                }
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => { selector.value = s && s.searchEngine ? s.searchEngine : (localStorage.getItem('searchEngine') || DEFAULT_ENGINE); if (customInput) customInput.value = loadCustomFromSettings(s); });
+                }
+            } else {
+                loadAndApply(null);
+            }
+
+            selector.addEventListener('change', (e) => { 
+                const v = e.target.value;
+                saveEngine(v);
+                // If running without electron backend, notify current window listeners
+                if (!(window.electronAPI && window.electronAPI.setSetting)) {
+                    try { window.dispatchEvent(new CustomEvent('settings-changed', { detail: { searchEngine: v } })); } catch (err) {}
+                }
+            });
+
+
+
+            if (customInput) {
+                customInput.addEventListener('input', (e) => {
+                    const val = e.target.value;
+                    if (!val) {
+                        customInput.classList.remove('invalid');
+                        if (customHelper) { customHelper.textContent = 'Leave empty to disable custom engine'; customHelper.classList.remove('error'); }
+                        return;
+                    }
+
+                    if (!val.includes('{search}')) {
+                        customInput.classList.add('invalid');
+                        if (customHelper) { customHelper.textContent = 'Template should include {search} placeholder'; customHelper.classList.add('error'); }
+                    } else {
+                        customInput.classList.remove('invalid');
+                        if (customHelper) { customHelper.textContent = 'Looks good — press Enter or leave field to save'; customHelper.classList.remove('error'); }
+                    }
+                });
+
+                customInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const val = customInput.value.trim();
+                        if (!val) {
+                            saveCustomEngine('');
+                            if (selector) selector.value = DEFAULT_ENGINE;
+                            if (customHelper) { customHelper.textContent = 'Custom engine removed.'; customHelper.classList.remove('error'); }
+                            customInput.classList.remove('invalid');
+                            return;
+                        }
+                        if (!val.includes('{search}')) { if (customHelper) { customHelper.textContent = 'Template must include {search} placeholder.'; customHelper.classList.add('error'); } customInput.classList.add('invalid'); return; }
+                        saveCustomEngine(val);
+                        if (selector) selector.value = 'Custom';
+                        customInput.classList.remove('invalid');
+                    }
+                });
+
+                customInput.addEventListener('blur', (e) => {
+                    const val = customInput.value.trim();
+                    if (!val) {
+                        saveCustomEngine('');
+                        if (selector && selector.value === 'Custom') selector.value = DEFAULT_ENGINE;
+                        if (customHelper) { customHelper.textContent = 'Custom engine removed.'; customHelper.classList.remove('error'); }
+                        customInput.classList.remove('invalid');
+                        return;
+                    }
+                    if (!val.includes('{search}')) {
+                        if (customHelper) { customHelper.textContent = 'Template must include {search} placeholder.'; customHelper.classList.add('error'); }
+                        customInput.classList.add('invalid');
+                        return;
+                    }
+                    saveCustomEngine(val);
+                    if (selector) selector.value = 'Custom';
+                    customInput.classList.remove('invalid');
+                    if (customHelper) { customHelper.textContent = 'Custom engine saved.'; customHelper.classList.remove('error'); }
+                });
+            }
+        })();
+
+        // Data Manipulation interval wiring
+        (function(){
+            const input = document.getElementById('data-manipulation-interval');
+            if (!input) return;
+
+            function saveInterval(v){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('dataManipulationInterval', Number(v));
+                    } else {
+                        localStorage.setItem('dataManipulationInterval', String(Number(v)));
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { dataManipulationInterval: Number(v) } }));
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            function loadAndApply(s){
+                const v = (s && typeof s.dataManipulationInterval === 'number') ? s.dataManipulationInterval : (Number(localStorage.getItem('dataManipulationInterval') || '60'));
+                input.value = v;
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
+                if (window.electronAPI.onSettingsUpdated) window.electronAPI.onSettingsUpdated((s) => { if (s && typeof s.dataManipulationInterval !== 'undefined') input.value = s.dataManipulationInterval; });
+            } else {
+                loadAndApply(null);
+            }
+
+            input.addEventListener('change', (e) => { const val = Number(e.target.value) || 60; saveInterval(val); });
+        })();
+
+        // History list wiring
+        (function(){
+            const clearBtn = document.getElementById('clear-history-btn');
+            const listContainer = document.getElementById('history-list');
+            const emptyEl = document.getElementById('history-empty');
+            const saveCheckbox = document.getElementById('save-history-checkbox');
+
+            function loadSaveFlag(s){
+                return (s && typeof s.saveHistory !== 'undefined') ? !!s.saveHistory : (localStorage.getItem('saveHistory') === 'true');
+            }
+
+            function loadHistoryFromSettings(s){
+                if (s && Array.isArray(s.history)) return s.history.slice();
+                try { return JSON.parse(localStorage.getItem('history') || '[]'); } catch(e){ return []; }
+            }
+
+            function persistHistory(arr){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('history', arr);
+                    } else {
+                        if (!arr || arr.length === 0) localStorage.removeItem('history'); else localStorage.setItem('history', JSON.stringify(arr));
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { history: arr } }));
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            function renderHistory(arr){
+                if (!listContainer) return;
+                listContainer.innerHTML = '';
+                if (!arr || arr.length === 0) {
+                    if (emptyEl) listContainer.appendChild(emptyEl);
+                    else {
+                        const e = document.createElement('div'); e.className='small-muted'; e.textContent='No history available.'; listContainer.appendChild(e);
+                    }
+                    return;
+                }
+
+                arr.forEach((it, idx) => {
+                    const row = document.createElement('div');
+                    row.className = 'list-item';
+                    row.style.display = 'flex'; row.style.justifyContent = 'space-between'; row.style.alignItems = 'center'; row.style.padding = '12px 18px';
+
+                    const time = document.createElement('span'); time.className = 'item-time';
+                    time.textContent = (it.ts) ? (new Date(it.ts)).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) : '';
+
+                    const details = document.createElement('div'); details.className='item-details';
+                    const titleText = it.title || '';
+                    let host = '';
+                    try { host = it.url ? (new URL(it.url)).hostname : (it.domain || ''); } catch(e){ host = it.domain || ''; }
+                    // Show hostname as primary (if available) and title as secondary
+                    const primary = host || titleText || it.url || 'Visit';
+                    const secondary = (host && titleText) ? titleText : '';
+                    details.innerHTML = `<div class="item-name">${primary}</div><div class="item-sub">${secondary}</div>`;
+
+                    const btn = document.createElement('button'); btn.className='icon-btn'; btn.textContent='close';
+                    // prevent the row click when removing an item
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        arr.splice(idx,1);
+                        persistHistory(arr);
+                        renderHistory(arr);
+                    });
+
+                    // make the whole row clickable (and keyboard-accessible) if a URL is present
+                    if (it.url) {
+                        row.style.cursor = 'pointer';
+                        row.addEventListener('click', () => {
+                            try { window.open(it.url, '_blank'); } catch (err) { window.location.href = it.url; }
+                        });
+                        row.tabIndex = 0;
+                        row.addEventListener('keydown', (e) => { if (e.key === 'Enter') { try { window.open(it.url, '_blank'); } catch (err) { window.location.href = it.url; } } });
+                    }
+
+                    row.appendChild(time);
+                    row.appendChild(details);
+                    row.appendChild(btn);
+                    listContainer.appendChild(row);
+                });
+            }
+
+            function loadAndApply(s){
+                // apply save flag
+                const enabled = loadSaveFlag(s);
+                if (saveCheckbox) saveCheckbox.checked = !!enabled;
+                const arr = loadHistoryFromSettings(s);
+                renderHistory(arr);
+            }
+
+            if (saveCheckbox) saveCheckbox.addEventListener('change', (e) => {
+                const v = !!e.target.checked;
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('saveHistory', v);
+                    } else {
+                        localStorage.setItem('saveHistory', v);
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { saveHistory: v } }));
+                    }
+                } catch (err) { console.error(err); }
+            });
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => { loadAndApply(s); });
+                }
+            } else {
+                loadAndApply(null);
+            }
+
+            if (clearBtn) clearBtn.addEventListener('click', () => {
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('history', []);
+                    } else {
+                        localStorage.removeItem('history');
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { history: [] } }));
+                    }
+                } catch (e) {}
+                loadAndApply(null);
+            });
+
+            window.addEventListener('settings-changed', (e) => {
+                if (!e || !e.detail) return;
+                if (typeof e.detail.history !== 'undefined') {
+                    renderHistory(Array.isArray(e.detail.history) ? e.detail.history : []);
+                }
+            });
+
+            // Keyboard shortcut inside Settings page: Cmd/Ctrl + Delete + H -> Clear History
+            (function(){
+                const settingsClearBtn = document.getElementById('clear-history-btn');
+                const keysDown = new Set();
+                document.addEventListener('keydown', (e) => {
+                    keysDown.add(e.key);
+                    const isMac = navigator.platform && navigator.platform.toLowerCase().includes('mac');
+                    const cmdOrCtrl = isMac ? e.metaKey : e.ctrlKey;
+                    const deleteHeld = keysDown.has('Delete') || keysDown.has('Backspace') || keysDown.has('Del');
+                    if (e.key.toLowerCase() === 'h' && cmdOrCtrl && deleteHeld) {
+                        e.preventDefault();
+                        if (settingsClearBtn) settingsClearBtn.click();
+                    }
+                });
+                document.addEventListener('keyup', (e) => { keysDown.delete(e.key); });
+            })();
+        })();
+
+        // Restore Last Session setting wiring
+        (function(){
+            const checkbox = document.getElementById('restore-last-session-checkbox');
+            if (!checkbox) return;
+
+            const setCheckbox = (val) => { checkbox.checked = !!val; };
+
+            // If running inside Electron (preload exposed), read persisted setting
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(settings => {
+                    setCheckbox(settings && settings.restoreLastSession);
+                    // update pages count visual
+                    const countEl = document.getElementById('startup-pages-count');
+                    if (countEl) countEl.textContent = (settings && Array.isArray(settings.startupPages)) ? `${settings.startupPages.length} pages` : '0 pages';
+                }).catch(() => {});
+
+                // Listen for updates
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((settings) => {
+                        setCheckbox(settings && settings.restoreLastSession);
+                        const countEl = document.getElementById('startup-pages-count');
+                        if (countEl) countEl.textContent = (settings && Array.isArray(settings.startupPages)) ? `${settings.startupPages.length} pages` : '0 pages';
+                    });
+                }
+
+                checkbox.addEventListener('change', (e) => {
+                    try {
+                        window.electronAPI.setSetting('restoreLastSession', e.target.checked);
+                    } catch (err) { console.error(err); }
+                });
+            } else {
+                // Fallback: persist in localStorage if not in Electron
+                const val = localStorage.getItem('restoreLastSession');
+                if (val !== null) setCheckbox(val === 'true');
+                checkbox.addEventListener('change', (e) => {
+                    localStorage.setItem('restoreLastSession', e.target.checked);
+                });
+            }
+        })();
+
+        // KeePassXC password manager wiring
+        (function(){
+            const mainToggle = document.getElementById('keepassxc-switch');
+            const dbPathInput = document.getElementById('keepassxc-db-path');
+            const refreshBtn = document.getElementById('keepassxc-refresh-btn');
+            const entriesList = document.getElementById('keepassxc-entries-list');
+            const entriesStatus = document.getElementById('keepassxc-entries-status');
+            const passwordsSection = document.getElementById('passwords');
+            const passwordsList = document.getElementById('passwords-list');
+
+            function renderEntries(result) {
+                if (!entriesList) return;
+                if (!result) return;
+                entriesList.innerHTML = '';
+                if (!Array.isArray(result.entries) || result.entries.length === 0) {
+                    entriesList.innerHTML = '<div class="small-muted">No saved credentials available.</div>';
+                    if (entriesStatus) entriesStatus.textContent = result.message || 'No entries found';
+                    return;
+                }
+
+                entriesStatus.textContent = `Loaded ${result.entries.length} entries.`;
+                result.entries.forEach((entry) => {
+                    const row = document.createElement('div');
+                    row.style.padding = '6px 0';
+                    row.style.borderBottom = '1px solid rgba(255,255,255,.1)';
+                    row.innerHTML = `<div style="word-break:break-word; font-weight:600;">${entry.name}</div>
+                                     <div style="font-size:13px;color:#9aa5b2;">${entry.username || '<i>no username</i>'}</div>
+                                     <div style="font-size:13px;color:#a0b0c0;">${entry.password ? entry.password : '<i>no password</i>'}</div>`;
+                    entriesList.appendChild(row);
+                });
+            }
+
+            async function refreshEntries() {
+                if (!window.electronAPI || !window.electronAPI.getKeyPassXCEntries) {
+                    if (entriesStatus) entriesStatus.textContent = 'KeePassXC API unavailable.';
+                    return;
+                }
+
+                if (entriesStatus) entriesStatus.textContent = 'Loading KeePassXC entries...';
+                try {
+                    const result = await window.electronAPI.getKeyPassXCEntries();
+                    renderEntries(result);
+                    if (!result.enabled && entriesStatus) entriesStatus.textContent = result.message || 'KeePassXC disabled or unavailable.';
+                } catch (e) {
+                    entriesStatus.textContent = `Error loading entries: ${e.message || e}`;
+                }
+            }
+
+            function applyState(settings) {
+                const enabled = !!(settings && settings.keyPassXCEnabled);
+                const dbPath = (settings && settings.keyPassXCDBPath) ? settings.keyPassXCDBPath : '';
+                if (mainToggle) mainToggle.checked = enabled;
+                if (dbPathInput) dbPathInput.value = dbPath;
+                if (entriesStatus) {
+                    entriesStatus.textContent = enabled ? 'KeePassXC enabled.' : 'KeePassXC disabled. Enable in settings to use.';
+                }
+
+                if (enabled) {
+                    refreshEntries();
+                } else {
+                    if (entriesList) entriesList.innerHTML = '<div class="small-muted">Enable KeePassXC to load password entries.</div>';
+                }
+            }
+
+            function updateSettings(key, value) {
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting(key, value);
+                    } else {
+                        localStorage.setItem(key, String(value));
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { [key]: value } }));
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            if (mainToggle) {
+                mainToggle.addEventListener('change', (e) => {
+                    updateSettings('keyPassXCEnabled', !!e.target.checked);
+                });
+            }
+
+            if (dbPathInput) {
+                dbPathInput.addEventListener('blur', (e) => {
+                    updateSettings('keyPassXCDBPath', e.target.value.trim());
+                });
+            }
+
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', refreshEntries);
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(applyState).catch(() => applyState({}));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => applyState(s));
+                }
+            } else {
+                const defaults = { keyPassXCEnabled: localStorage.getItem('keyPassXCEnabled') === 'true', keyPassXCDBPath: localStorage.getItem('keyPassXCDBPath') };
+                applyState(defaults);
+            }
+
+            if (passwordsSection && passwordsList) {
+                // Refresh passwords list when navigating to section
+                const observer = new MutationObserver(() => {
+                    if (passwordsSection.classList.contains('active')) {
+                        refreshEntries();
+                    }
+                });
+                observer.observe(passwordsSection, { attributes: true, attributeFilter: ['class'] });
+            }
+        })();
+
+        // Navigator AdBlock extension toggle
+        (function(){
+            const cb = document.getElementById('ext-adblock-checkbox');
+            if (!cb) return;
+            const setCb = (val) => { cb.checked = !!val; };
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(s => setCb(s && s.adblockEnabled)).catch(() => {});
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated(s => setCb(s && s.adblockEnabled));
+                }
+            } else {
+                const v = localStorage.getItem('adblockEnabled');
+                if (v !== null) setCb(v === 'true');
+            }
+            cb.addEventListener('change', (e) => {
+                if (window.electronAPI && window.electronAPI.setSetting) {
+                    window.electronAPI.setSetting('adblockEnabled', e.target.checked);
+                } else {
+                    localStorage.setItem('adblockEnabled', e.target.checked);
+                }
+            });
+        })();
+
+        // Make default browser (Settings → General)
+        (function(){
+            const btn = document.getElementById('make-default-settings-btn');
+            const status = document.getElementById('make-default-status');
+            if (!btn) return;
+            btn.addEventListener('click', () => {
+                try {
+                    if (window.electronAPI && window.electronAPI.menuAction) {
+                        window.electronAPI.menuAction({ action: 'make-default-browser' });
+                        if (status) status.textContent = 'Request sent — follow system prompt if shown';
+                        setTimeout(() => { if (status) status.textContent = 'Click to set Navigator as your default browser'; }, 5000);
+                    }
+                } catch (e) { console.error('make-default (settings) error', e); }
+            });
+        })();
+
+        // Startup Pages modal + logic
+        (function(){
+            let pages = [];
+            const btn = document.getElementById('set-startup-pages-btn');
+            const countEl = document.getElementById('startup-pages-count');
+
+            const modalTemplate = `
+<div id="startup-pages-modal" class="modal" style="display:none;">
+  <div class="modal-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,0.4);"></div>
+  <div class="modal-panel" style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--card-bg,#111);border-radius:8px;padding:16px;width:520px;max-width:90%;z-index:1000;">
+    <h3 style="margin:0 0 8px 0;">Startup pages</h3>
+    <p style="margin:0 0 12px 0;color:#aaa;font-size:13px;">Add URLs that should open when Navigator starts. One per line.</p>
+    <div style="display:flex;gap:8px;margin-bottom:8px;">
+      <input id="startup-page-input" type="text" placeholder="https://example.com" style="flex:1;padding:8px;border-radius:4px;border:1px solid #333;background:transparent;color:inherit;">
+      <button id="add-startup-page-btn" class="secondary-btn">Add</button>
+    </div>
+    <div id="startup-pages-list" style="max-height:240px;overflow:auto;margin-bottom:12px;"></div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;">
+      <button id="cancel-startup-pages-btn" class="secondary-btn">Cancel</button>
+      <button id="save-startup-pages-btn" class="primary-btn">Save</button>
+    </div>
+  </div>
+</div>`;
+
+            function normalizeUrl(u) {
+                try {
+                    if (!u) return null;
+                    u = u.trim();
+                    if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+                    const parsed = new URL(u);
+                    return parsed.href;
+                } catch (e) { return null; }
+            }
+
+            function renderList() {
+                const list = document.getElementById('startup-pages-list');
+                if (!list) return;
+                list.innerHTML = '';
+                pages.forEach((p, idx) => {
+                    const row = document.createElement('div');
+                    row.style.display = 'flex';
+                    row.style.justifyContent = 'space-between';
+                    row.style.alignItems = 'center';
+                    row.style.padding = '12px 18px';
+
+                    const a = document.createElement('a');
+                    a.href = p;
+                    a.textContent = p;
+                    a.target = '_blank';
+                    a.style.color = 'inherit';
+                    a.style.textDecoration = 'none';
+                    a.style.overflow = 'hidden';
+                    a.style.textOverflow = 'ellipsis';
+                    a.style.whiteSpace = 'nowrap';
+                    a.style.flex = '1';
+
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'secondary-btn';
+                    removeBtn.textContent = 'Remove';
+                    removeBtn.style.marginLeft = '8px';
+                    removeBtn.addEventListener('click', () => {
+                        pages.splice(idx, 1);
+                        renderList();
+                    });
+
+                    row.appendChild(a);
+                    row.appendChild(removeBtn);
+                    list.appendChild(row);
+                });
+                if (countEl) countEl.textContent = `${pages.length} pages`;
+            }
+
+            function openModal() {
+                if (!document.getElementById('startup-pages-modal')) {
+                    const container = document.createElement('div');
+                    container.innerHTML = modalTemplate;
+                    document.body.appendChild(container);
+
+                    document.getElementById('add-startup-page-btn').addEventListener('click', () => {
+                        const input = document.getElementById('startup-page-input');
+                        const val = normalizeUrl(input.value);
+                        if (val) {
+                            pages.push(val);
+                            input.value = '';
+                            renderList();
+                        }
+                    });
+
+                    document.getElementById('startup-page-input').addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('add-startup-page-btn').click();
+                        }
+                    });
+
+                    document.getElementById('cancel-startup-pages-btn').addEventListener('click', () => {
+                        closeModal();
+                    });
+
+                    document.getElementById('save-startup-pages-btn').addEventListener('click', () => {
+                        // Save using electronAPI if available
+                        try {
+                            if (window.electronAPI && window.electronAPI.setSetting) {
+                                // If empty, prefer 'newtab' startup type
+                                if (pages.length === 0) {
+                                    window.electronAPI.setSetting('startupPages', pages);
+                                    window.electronAPI.setSetting('startupType', 'newtab');
+                                    window.electronAPI.setSetting('restoreLastSession', false);
+                                } else {
+                                    window.electronAPI.setSetting('startupPages', pages);
+                                    window.electronAPI.setSetting('startupType', 'specific');
+                                    window.electronAPI.setSetting('restoreLastSession', false);
+                                }
+                            } else {
+                                localStorage.setItem('startupPages', JSON.stringify(pages));
+                                localStorage.setItem('startupType', pages.length === 0 ? 'newtab' : 'specific');
+                                localStorage.setItem('restoreLastSession', 'false');
+                                const c = document.getElementById('startup-pages-count'); if (c) c.textContent = `${pages.length} pages`;
+                            }
+                        } catch (e) { console.error(e); }
+                        closeModal();
+                    });
+                }
+
+                // show
+                const modal = document.getElementById('startup-pages-modal');
+                if (!modal) return;
+                modal.style.display = 'block';
+                setTimeout(() => { const inp = document.getElementById('startup-page-input'); if (inp) inp.focus(); }, 50);
+                renderList();
+            }
+
+            function closeModal() {
+                const modal = document.getElementById('startup-pages-modal');
+                if (!modal) return;
+                modal.style.display = 'none';
+            }
+
+            // Load initial pages from settings or localStorage
+            function loadInitial() {
+                if (window.electronAPI && window.electronAPI.getSettings) {
+                    window.electronAPI.getSettings().then(s => {
+                        pages = Array.isArray(s.startupPages) ? s.startupPages.slice() : [];
+                        if (countEl) countEl.textContent = `${pages.length} pages`;
+                    }).catch(() => { pages = []; if (countEl) countEl.textContent = '0 pages'; });
+
+                    if (window.electronAPI.onSettingsUpdated) {
+                        window.electronAPI.onSettingsUpdated((s) => {
+                            pages = Array.isArray(s.startupPages) ? s.startupPages.slice() : [];
+                            if (countEl) countEl.textContent = `${pages.length} pages`;
+                        });
+                    }
+                } else {
+                    try {
+                        pages = JSON.parse(localStorage.getItem('startupPages') || '[]');
+                        if (!Array.isArray(pages)) pages = [];
+                    } catch (e) { pages = []; }
+                    if (countEl) countEl.textContent = `${pages.length} pages`;
+                }
+            }
+
+            // Wire button
+            if (btn) {
+                btn.addEventListener('click', (e) => { e.stopPropagation(); loadInitial(); openModal(); });
+            }
+
+            loadInitial();
+        })();
+
+        // Custom Home Page setting wiring
+        (function(){
+            const DEFAULT_HOME = 'space.cheeter.de';
+            const START_PAGE_NOTE = 'internal start page';
+            const input = document.getElementById('custom-homepage-input');
+            if (!input) return;
+            const helper = document.getElementById('custom-homepage-helper');
+            const setInput = (val) => {
+                input.value = val || '';
+                if (helper) helper.textContent = input.value ? 'Using custom home page' : `Using default: ${START_PAGE_NOTE} (${DEFAULT_HOME})`;
+            };
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(s => {
+                    setInput(s && s.homePage ? s.homePage : '');
+                }).catch(() => {});
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => setInput(s && s.homePage ? s.homePage : ''));
+                }
+            } else {
+                const v = localStorage.getItem('homePage') || '';
+                setInput(v);
+            }
+
+            function saveHome(val) {
+                const v = (val || '').trim();
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('homePage', v);
+                    } else {
+                        localStorage.setItem('homePage', v);
+                    }
+                } catch (err) { console.error(err); }
+                setInput(v);
+            }
+
+            // Live feedback while typing, save on blur or Enter
+            input.addEventListener('input', (e) => {
+                if (helper) helper.textContent = e.target.value ? 'Using custom home page' : `Using default: ${DEFAULT_HOME}`;
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    saveHome(e.target.value);
+                    input.blur();
+                }
+            });
+
+            input.addEventListener('blur', (e) => {
+                saveHome(e.target.value);
+            });
+        })();
+
+        // Disposable Mode wiring (single on/off switch)
+        (function(){
+            const CURRENT_LABEL = document.getElementById('disposable-current');
+            const SWITCH = document.getElementById('disposable-switch');
+
+            function updateLabel(mode){
+                const text = (mode === 'disposable') ? 'Current: Disposable' : 'Current: No Disposable';
+                if (CURRENT_LABEL) CURRENT_LABEL.textContent = text;
+                if (SWITCH) SWITCH.checked = (mode === 'disposable');
+            }
+
+            async function loadMode(){
+                try {
+                    if (window.electronAPI && window.electronAPI.getSettings) {
+                        const s = await window.electronAPI.getSettings();
+                        updateLabel((s && s.disposableMode) ? s.disposableMode : 'none');
+                        if (window.electronAPI.onSettingsUpdated) window.electronAPI.onSettingsUpdated((s2) => updateLabel((s2 && s2.disposableMode) ? s2.disposableMode : 'none'));
+                    } else {
+                        updateLabel(localStorage.getItem('disposableMode') || 'none');
+                    }
+                } catch (e) { updateLabel('none'); }
+            }
+
+            function setMode(val){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) window.electronAPI.setSetting('disposableMode', val);
+                    else localStorage.setItem('disposableMode', val);
+                    window.dispatchEvent(new CustomEvent('settings-changed', { detail: { disposableMode: val } }));
+                    updateLabel(val);
+
+                    // When enabling disposable mode, open the First‑Run setup (user requested behavior)
+                    if (val === 'disposable' && window.electronAPI && window.electronAPI.menuAction) {
+                        window.electronAPI.menuAction({ action: 'open-url', url: 'navigator://onboarding' });
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            if (SWITCH) SWITCH.addEventListener('change', () => { setMode(SWITCH.checked ? 'disposable' : 'none'); });
+            loadMode();
+        })();
+
+        // Browser Spoofing wiring
+        (function(){
+            const SWITCH = document.getElementById('spoofing-switch');
+            const browserSel = document.getElementById('spoofing-browser-selector');
+            const deviceSel = document.getElementById('spoofing-device-selector');
+            const modeSel = document.getElementById('spoofing-mode-selector');
+            const opts = document.getElementById('spoofing-options');
+
+            function updateVisibility(enabled){
+                if (opts) opts.style.display = enabled ? 'block' : 'none';
+            }
+
+            async function loadSpoofing(){
+                try {
+                    if (window.electronAPI && window.electronAPI.getSettings) {
+                        const s = await window.electronAPI.getSettings();
+                        const en = !!s.spoofingEnabled;
+                        if (SWITCH) SWITCH.checked = en;
+                        updateVisibility(en);
+                        if (browserSel && s.spoofingBrowser) browserSel.value = s.spoofingBrowser;
+                        if (deviceSel && s.spoofingDevice) deviceSel.value = s.spoofingDevice;
+                        if (modeSel && s.spoofingMode) modeSel.value = s.spoofingMode;
+                        if (window.electronAPI.onSettingsUpdated) {
+                            window.electronAPI.onSettingsUpdated((s2)=>{
+                                const en2 = !!s2.spoofingEnabled;
+                                if (SWITCH) SWITCH.checked = en2;
+                                updateVisibility(en2);
+                                if (browserSel && s2.spoofingBrowser) browserSel.value = s2.spoofingBrowser;
+                                if (deviceSel && s2.spoofingDevice) deviceSel.value = s2.spoofingDevice;
+                                if (modeSel && s2.spoofingMode) modeSel.value = s2.spoofingMode;
+                            });
+                        }
+                    } else {
+                        // fallback to localStorage if necessary
+                        const en = localStorage.getItem('spoofingEnabled') === 'true';
+                        if (SWITCH) SWITCH.checked = en;
+                        updateVisibility(en);
+                    }
+                } catch (e) { console.error(e); }
+            }
+            function setSpoofingEnabled(val){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) window.electronAPI.setSetting('spoofingEnabled', val);
+                    else localStorage.setItem('spoofingEnabled', val);
+                    window.dispatchEvent(new CustomEvent('settings-changed', { detail: { spoofingEnabled: val } }));
+                } catch(e){console.error(e);}            }
+            function setSpoofingBrowser(val){
+                try { if (window.electronAPI && window.electronAPI.setSetting) window.electronAPI.setSetting('spoofingBrowser', val);
+                    else localStorage.setItem('spoofingBrowser', val);
+                    window.dispatchEvent(new CustomEvent('settings-changed', { detail: { spoofingBrowser: val } }));
+                } catch(e){console.error(e);}            }
+            function setSpoofingDevice(val){
+                try { if (window.electronAPI && window.electronAPI.setSetting) window.electronAPI.setSetting('spoofingDevice', val);
+                    else localStorage.setItem('spoofingDevice', val);
+                    window.dispatchEvent(new CustomEvent('settings-changed', { detail: { spoofingDevice: val } }));
+                } catch(e){console.error(e);}            }
+            function setSpoofingMode(val){
+                try { if (window.electronAPI && window.electronAPI.setSetting) window.electronAPI.setSetting('spoofingMode', val);
+                    else localStorage.setItem('spoofingMode', val);
+                    window.dispatchEvent(new CustomEvent('settings-changed', { detail: { spoofingMode: val } }));
+                } catch(e){console.error(e);}            }
+
+            if (SWITCH) SWITCH.addEventListener('change', ()=>{ const v = SWITCH.checked; setSpoofingEnabled(v); updateVisibility(v); });
+            if (browserSel) browserSel.addEventListener('change', ()=>{ setSpoofingBrowser(browserSel.value); });
+            if (deviceSel) deviceSel.addEventListener('change', ()=>{ setSpoofingDevice(deviceSel.value); });
+            if (modeSel) modeSel.addEventListener('change', ()=>{ setSpoofingMode(modeSel.value); });
+            loadSpoofing();
+        })();
+
+        // App version display
+        (function(){
+            const versionEl = document.getElementById('app-version');
+            if (!versionEl) return;
+            if (window.electronAPI && window.electronAPI.getAppVersion) {
+                window.electronAPI.getAppVersion().then(v => {
+                    // include same suffix as the previous hardcoded string
+                    versionEl.textContent = `Version ${v} (Public Beta)`;
+                }).catch(() => {});
+            } else {
+                // fallback for non-electron scenario
+                fetch('../../package.json').then(r=>r.json()).then(j => {
+                    if (j && j.version) versionEl.textContent = `Version ${j.version} (Public Beta)`;
+                }).catch(()=>{});
+            }
+        })();
+
+        // User name setting wiring
+        (function(){
+            const input = document.getElementById('settings-username-input');
+            if (!input) return;
+
+            function saveName(val){
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('username', val.trim());
+                    } else {
+                        localStorage.setItem('username', val.trim());
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { username: val.trim() } }));
+                    }
+                } catch (e) { console.error(e); }
+            }
+
+            function loadAndApply(s){
+                const v = (s && s.username) ? s.username : (localStorage.getItem('username') || '');
+                input.value = v;
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => { loadAndApply(s); });
+                }
+            } else {
+                loadAndApply(null);
+            }
+
+            input.addEventListener('input', (e) => {
+                // Live update
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    saveName(e.target.value);
+                    input.blur();
+                }
+            });
+
+            input.addEventListener('blur', (e) => {
+                saveName(e.target.value);
+            });
+        })();
+
+        // Developer Mode toggle and page visibility
+        (function() {
+            const checkbox = document.getElementById('developer-mode-checkbox');
+            const navDeveloper = document.getElementById('nav-developer');
+            const developerSection = document.getElementById('developer');
+            if (!checkbox || !navDeveloper) return;
+
+            function applyDevMode(enabled) {
+                const isEnabled = !!enabled;
+                checkbox.checked = isEnabled;
+                navDeveloper.style.display = isEnabled ? 'flex' : 'none';
+
+                if (!isEnabled && navDeveloper.classList.contains('active')) {
+                    selectSection('general');
+                }
+            }
+
+            function setDevMode(enabled) {
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting('developerMode', enabled);
+                    } else {
+                        localStorage.setItem('developerMode', String(enabled));
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { developerMode: enabled } }));
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+                applyDevMode(enabled);
+            }
+
+            function loadAndApply(s) {
+                const enabled = (s && typeof s.developerMode !== 'undefined')
+                    ? !!s.developerMode
+                    : (localStorage.getItem('developerMode') === 'true');
+                applyDevMode(enabled);
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated((s) => { loadAndApply(s); });
+                }
+            } else {
+                loadAndApply(null);
+            }
+
+            checkbox.addEventListener('change', (e) => {
+                setDevMode(e.target.checked);
+            });
+        })();
+
+        // Modal Overlay Logic
+        (function() {
+            document.body.style.background = 'transparent';
+            const container = document.getElementById('settings-container');
+            if (!container) return;
+
+            const backdrop = document.createElement('div');
+            backdrop.id = 'modal-backdrop';
+            backdrop.style.cssText = "position:fixed; inset:0; background:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter: blur(4px);";
+            
+            container.style.width = '90%';
+            container.style.height = '90%';
+            container.style.maxWidth = '1000px';
+            container.style.maxHeight = '800px';
+            container.style.background = 'var(--bg-main)';
+            container.style.borderRadius = '16px';
+            container.style.boxShadow = '0 20px 50px rgba(0,0,0,0.6)';
+            container.style.overflow = 'hidden';
+            container.style.position = 'relative';
+            container.style.border = '1px solid var(--border-color)';
+
+            document.body.appendChild(backdrop);
+            backdrop.appendChild(container);
+
+            backdrop.addEventListener('click', (e) => {
+                if (e.target === backdrop) {
+                    if (window.electronAPI && window.electronAPI.closeOverlay) {
+                        window.electronAPI.closeOverlay();
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

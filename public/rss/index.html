@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSS Settings</title>
+  <link rel="stylesheet" href="rss.css" />
+
+</head>
+<body>
+  <div id="rss-app">
+    <header>
+      <div style="display:flex; align-items:center; justify-content:space-between; gap: 12px; flex-wrap:wrap;">
+        <div>
+          <h1>RSS Settings</h1>
+          <div id="status">Configure your RSS sources.</div>
+        </div>
+      </div>
+    </header>
+
+    <details id="source-panel">
+      <summary>Feed Sources</summary>
+      <div class="source-controls">
+        <div class="toolbar">
+          <input id="source-input" placeholder="https://example.com/feed.xml" aria-label="Add RSS Source" />
+          <button id="add-source">+</button>
+        </div>
+        <button id="refresh-button" class="refresh-sources">Reload</button>
+      </div>
+      <div id="sources"></div>
+    </details>
+    <div id="entries"></div>
+  </div>
+  <script src="./rss.js"></script>
+</body>
+</html>

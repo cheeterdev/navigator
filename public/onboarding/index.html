@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Onboarding</title>
+  <link rel="stylesheet" href="../settings/settings.css">
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+
+<body class="theme-default">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <defs>
+      <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </symbol>
+      <symbol id="icon-add" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+      </symbol>
+      <symbol id="icon-arrow_back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </symbol>
+      <symbol id="icon-arrow_forward" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </symbol>
+      <symbol id="icon-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+      </symbol>
+      <symbol id="icon-visibility" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </symbol>
+      <symbol id="icon-syringe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 2 4 4"></path>
+        <path d="m17 7 3-3"></path>
+        <path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path>
+        <path d="m9 11 4 4"></path>
+        <path d="m5 19-3 3"></path>
+        <path d="m14 4 6 6"></path>
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect width="7" height="7" x="3" y="3" rx="1"></rect>
+        <rect width="7" height="7" x="14" y="3" rx="1"></rect>
+        <rect width="7" height="7" x="14" y="14" rx="1"></rect>
+        <rect width="7" height="7" x="3" y="14" rx="1"></rect>
+      </symbol>
+      <symbol id="icon-tab" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+        <line x1="3" y1="9" x2="21" y2="9"></line>
+        <line x1="9" y1="21" x2="9" y2="9"></line>
+      </symbol>
+      <symbol id="icon-vpn_key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15.5 7.5 3 3L22 7l-3-3"></path>
+        <path d="m21 2-9.6 9.6"></path>
+        <circle cx="7.5" cy="15.5" r="5.5"></circle>
+      </symbol>
+      <symbol id="icon-vpn_lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </symbol>
+      <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </symbol>
+      <symbol id="icon-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+        <rect x="6" y="14" width="12" height="8"></rect>
+      </symbol>
+      <symbol id="icon-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m15.5 7.5 3 3L22 7l-3-3"></path>
+        <path d="m21 2-9.6 9.6"></path>
+        <circle cx="7.5" cy="15.5" r="5.5"></circle>
+      </symbol>
+      <symbol id="icon-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+        <path d="M3 3v5h5"></path>
+        <path d="M12 7v5l4 2"></path>
+      </symbol>
+      <symbol id="icon-extension" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707 2.402 2.402 0 0 1-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.446-1.02.898A2.5 2.5 0 1 1 5 15.314c.452.18.824.527.898 1.02a1.026 1.026 0 0 0 .29.877l1.568 1.568c.47.47 1.087.706 1.704.706s1.233-.235 1.704-.706l1.611-1.611a.98.98 0 0 1 .837-.276c.47.07.802.48.968.925a2.501 2.501 0 1 0 3.214-3.214c-.446-.166-.855-.497-.925-.968a.979.979 0 0 1 .276-.837l1.61-1.61a2.404 2.404 0 0 1 1.705-.707 2.402 2.402 0 0 1 1.704.706l1.568 1.568a1.026 1.026 0 0 0 .877.29c.493-.074.84-.446 1.02-.898a2.5 2.5 0 0 0-1.745-4.498z">
+        </path>
+      </symbol>
+      <symbol id="icon-delete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18"></path>
+        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+        <line x1="10" y1="11" x2="10" y2="17"></line>
+        <line x1="14" y1="11" x2="14" y2="17"></line>
+      </symbol>
+      <symbol id="icon-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+        </path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </symbol>
+      <symbol id="icon-error" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="15" y1="9" x2="9" y2="15"></line>
+        <line x1="9" y1="9" x2="15" y2="15"></line>
+      </symbol>
+      <symbol id="icon-cloud_off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22.61 16.95A5 5 0 0 0 18 10h-1.26a8 8 0 0 0-7.05-6M5 5a8 8 0 0 0 4 15h9a5 5 0 0 0 1.7-.3"></path>
+        <line x1="2" y1="2" x2="22" y2="22"></line>
+      </symbol>
+      <symbol id="icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </symbol>
+      <symbol id="icon-visibility_off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+        <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+        <line x1="2" x2="22" y1="2" y2="22"></line>
+        <path d="M14.08 14.08A3 3 0 0 1 9.92 9.92"></path>
+      </symbol>
+      <symbol id="icon-theater_comedy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+        <line x1="7" y1="2" x2="7" y2="22"></line>
+        <line x1="17" y1="2" x2="17" y2="22"></line>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <line x1="2" y1="7" x2="7" y2="7"></line>
+        <line x1="2" y1="17" x2="7" y2="17"></line>
+        <line x1="17" y1="17" x2="22" y2="17"></line>
+        <line x1="17" y1="7" x2="22" y2="7"></line>
+      </symbol>
+      <symbol id="icon-volunteer_activism" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z">
+        </path>
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polygon
+          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+        </polygon>
+      </symbol>
+      <symbol id="icon-more_vert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="1"></circle>
+        <circle cx="12" cy="5" r="1"></circle>
+        <circle cx="12" cy="19" r="1"></circle>
+      </symbol>
+      <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="13.5" cy="6.5" r=".5"></circle>
+        <circle cx="17.5" cy="10.5" r=".5"></circle>
+        <circle cx="8.5" cy="7.5" r=".5"></circle>
+        <circle cx="6.5" cy="12.5" r=".5"></circle>
+        <path
+          d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z">
+        </path>
+      </symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </symbol>
+      <symbol id="icon-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+        <path d="M3 3v5h5"></path>
+        <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+        <path d="M16 21v-5h5"></path>
+      </symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </symbol>
+      <symbol id="icon-tune" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" y1="21" x2="4" y2="14"></line>
+        <line x1="4" y1="10" x2="4" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12" y2="3"></line>
+        <line x1="20" y1="21" x2="20" y2="16"></line>
+        <line x1="20" y1="12" x2="20" y2="3"></line>
+        <line x1="1" y1="14" x2="7" y2="14"></line>
+        <line x1="9" y1="8" x2="15" y2="8"></line>
+        <line x1="17" y1="16" x2="23" y2="16"></line>
+      </symbol>
+      <symbol id="icon-favorite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z">
+        </path>
+      </symbol>
+      <symbol id="icon-swords" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"></polyline>
+        <line x1="13" y1="19" x2="19" y2="13"></line>
+        <line x1="16" y1="16" x2="20" y2="20"></line>
+        <line x1="19" y1="21" x2="21" y2="19"></line>
+      </symbol>
+      <symbol id="icon-eco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+      </symbol>
+      <symbol id="icon-water_drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z">
+        </path>
+      </symbol>
+      <symbol id="icon-sidebar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+        <line x1="9" y1="3" x2="9" y2="21"></line>
+      </symbol>
+      <symbol id="icon-⚠️" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </symbol>
+      <symbol id="icon-❌" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="15" y1="9" x2="9" y2="15"></line>
+        <line x1="9" y1="9" x2="15" y2="15"></line>
+      </symbol>
+      <!-- APP ICONS -->
+      <symbol id="icon-arquivo-ftp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="22 12 18 12 15 21 9 21 6 12 2 12"></polyline>
+        <polyline points="2 9 22 9"></polyline>
+      </symbol>
+      <symbol id="icon-arquivo-photos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </symbol>
+      <symbol id="icon-arquivo-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+        <polyline points="17 2 12 7 7 2"></polyline>
+      </symbol>
+      <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+        <path d="m22 7-10 5L2 7"></path>
+      </symbol>
+      <symbol id="icon-contacts" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </symbol>
+      <symbol id="icon-notes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+      </symbol>
+      <symbol id="icon-discord" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"></path>
+        <path d="M9 10a1 1 0 1 0 2 0 1 1 0 0 0-2 0"></path>
+        <path d="M13 10a1 1 0 1 0 2 0 1 1 0 0 0-2 0"></path>
+        <path d="M9 14c.5 1 1.5 1.5 3 1.5s2.5-.5 3-1.5"></path>
+      </symbol>
+      <symbol id="icon-mastodon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.48 2 2 6.5 2 12s4.48 10 10 10 10-4.5 10-10S17.52 2 12 2z"></path>
+        <path d="M8 11v3h.5c1 0 1.5-.5 1.5-1.5v-1c0-1-.5-1.5-1.5-1.5H8z"></path>
+        <path d="M14 11v3h-.5c-1 0-1.5-.5-1.5-1.5v-1c0-1 .5-1.5 1.5-1.5h.5z"></path>
+      </symbol>
+    </defs>
+  </svg>
+
+
+
+  <div class="onboarding-root">
+    <header class="fr-header">
+      <div class="fr-brand">
+        <img class="logo logo-img" width="45px" src="icon.png">
+        <svg class="logo logo-icon icon">
+          <use href="#icon-palette"></use>
+        </svg>
+        <div>
+          <h1 class="fr-title">Welcome to Navigator</h1>
+          <p class="fr-sub">Let's get things configured — a few quick choices and you're ready.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="fr-main">
+      <div class="fr-sections">
+        <!-- WELCOME PAGE -->
+        <section id="welcome" class="fr-section" data-header-title="Welcome to Setup"
+          data-header-desc="Welcome to Cheeter Navigator! This quick setup will help you configure a few options so you can get started right away. You can always change these settings later in Preferences."
+          data-header-icon="icon.png">
+          <h5 class="section-title">Welcome to Setup</h5>
+          <p class="section-desc" style="margin-bottom: 77px;">Welcome to Cheeter Navigator! This quick setup will help
+            you configure a few options so you can get started right away. You can of course always change these
+            settings later.</p>
+          <h5 class="section-title">What is Cheeter Navigator?</h5>
+          <p class="section-desc" style="margin-bottom: 77px;">Cheeter Navigator is a fast and secure web browser that
+            puts your privacy first. With a focus on speed and security, Cheeter Navigator ensures your online
+            experience is both fast and safe by adding featues like Private Browsing, Disposable Mode, Browser Spoofing
+            etc. keeping you never unprotected.</p>
+          <h5 class="section-title">Why is Cheeter Navigator better than your Browser?</h5>
+          <p class="section-desc" style="margin-bottom: 77px;">Cheeter Navigator is designed with a strong emphasis on
+            privacy and security. It offers features like Private Browsing, Disposable Mode, and Browser Spoofing to
+            protect your online activities from tracking and surveillance. With Cheeter Navigator, you can browse the
+            web with confidence, knowing that your data is secure and your privacy is respected.</p>
+          <h5 class="section-title">Support the development</h5>
+          <p class="section-desc" style="margin-bottom: 77px;">If you like Cheeter Navigator and want to support its
+            development, consider donating or contributing to the project. Your support helps us continue to improve and
+            provide a better browsing experience for everyone.</p>
+          <h5 class="section-title">How to contribute?</h5>
+          <p class="section-desc" style="margin-bottom: 77px;">You can contribute to Cheeter Navigator by reporting
+            bugs, suggesting new features, or even contributing code. Check out our <a
+              href="https://github.com/cheeterdev/navigator" target="_blank" style="color: var(--text-color);">GitHub
+              repository</a> for more information on how to get involved.</p>
+        </section>
+
+        <!-- THEME SETUP -->
+        <section id="theme-setup" class="fr-section" data-header-title="Theme Setup"
+          data-header-desc="Pick a look that fits you. You can change this later in Settings."
+          data-header-icon="icon-palette">
+          <h2 class="section-title">Theme Setup</h2>
+          <p class="section-desc">Pick a look that fits you. You can change this later in Settings.</p>
+
+          <div class="theme-grid" id="theme-grid">
+            <!-- tiles injected by JS -->
+          </div>
+        </section>
+
+        <!-- SEARCH SETUP -->
+        <section id="search-setup" class="fr-section" data-header-title="Search Engine"
+          data-header-desc="Choose your default search engine for the address bar, the search engines are sorted from the most secure to the least secure."
+          data-header-icon="icon-search">
+          <h2 class="section-title">Search Engine</h2>
+          <p class="section-desc">Choose your default search engine for the address bar, the search engines are sorted
+            from the most secure to the least secure.</p>
+
+          <div class="search-list" id="search-list">
+            <!-- search engines will be loaded from search-engines.json (matches Settings) -->
+          </div>
+        </section>
+
+        <!-- Disposable Mode moved into Quick Settings (see `fr-disposable-switch`) -->
+
+
+        <!-- ADD APPS SETUP -->
+        <section id="add-apps-setup" class="fr-section" data-header-title="Add Apps"
+          data-header-desc="Choose the apps to pin to your sidebar." data-header-icon="icon-menu">
+          <h2 class="section-title">Add Apps</h2>
+          <p class="section-desc">Select apps to pin them to the quick access sidebar.</p>
+
+          <div class="apps-container">
+            <details class="app-category-group" open>
+              <summary><svg class="icon" style="width: 18px; height: 18px;">
+                  <use href="#icon-home"></use>
+                </svg> Arquivo</summary>
+              <div class="app-list">
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_ftp">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-arquivo-ftp"></use>
+                  </svg>
+                  <span>Arquivo FTP</span>
+                </label>
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_photos">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-arquivo-photos"></use>
+                  </svg>
+                  <span>Arquivo Photos</span>
+                </label>
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_tv">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-arquivo-tv"></use>
+                  </svg>
+                  <span>Arquivo TV</span>
+                </label>
+              </div>
+            </details>
+
+            <details class="app-category-group" open>
+              <summary><svg class="icon" style="width: 18px; height: 18px;">
+                  <use href="#icon-settings"></use>
+                </svg> Integrated Apps</summary>
+              <div class="app-list">
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_mail">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-mail"></use>
+                  </svg>
+                  <span>Mail</span>
+                </label>
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_contacts">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-contacts"></use>
+                  </svg>
+                  <span>Contacts</span>
+                </label>
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_calendar">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-calendar"></use>
+                  </svg>
+                  <span>Calendar</span>
+                </label>
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_notes">
+                  <svg class="icon" style="width: 18px; height: 18px;">
+                    <use href="#icon-notes"></use>
+                  </svg>
+                  <span>Notes</span>
+                </label>
+              </div>
+            </details>
+
+            <details class="app-category-group">
+              <summary><svg class="icon" style="width: 18px; height: 18px;">
+                  <use href="#icon-share"></use>
+                </svg> Third Party Apps</summary>
+              <div class="app-list">
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_discord">
+                  <span>Discord</span>
+                </label>
+                <label class="app-item">
+                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_mastodon">
+                  <span>Mastodon</span>
+                </label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- QUICK SETTINGS (First‑Run) -->
+        <section id="quick-setup" class="fr-section" data-header-title="Quick Settings"
+          data-header-desc="A few important preferences to get started. You can change them later in Settings → General."
+          data-header-icon="icon-tune">
+          <h2 class="section-title">Quick Settings</h2>
+          <p class="section-desc">A few important preferences to get started. You can change them later in Settings →
+            General.</p>
+
+          <div class="card" style="margin-top:12px; display:flex; align-items:center; justify-content:space-between;">
+            <div style="flex:1;padding-right:12px;">
+              <div class="card-title">Disposable Mode</div>
+              <div class="card-desc">Wipes all data when Cheeter Navigator is closed.</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <label class="switch"><input id="fr-disposable-switch" type="checkbox"><span
+                  class="slider"></span></label>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:8px; display:flex; align-items:center; justify-content:space-between;">
+            <div style="flex:1;padding-right:12px;">
+              <div class="card-title">Set as default browser</div>
+              <div class="card-desc">Make Navigator your system default browser.</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+              <button id="fr-make-default-btn" class="secondary-btn">Set as default</button>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px; display:flex; align-items:center; justify-content:space-between;">
+            <div style="flex:1;padding-right:12px;">
+              <div class="card-title">Restore last session</div>
+              <div class="card-desc">Automatically reopen tabs from your previous session.</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <label class="switch"><input id="fr-restore-last-session" type="checkbox"><span
+                  class="slider"></span></label>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px; display:flex; align-items:center; justify-content:space-between;">
+            <div style="flex:1;padding-right:12px;">
+              <div class="card-title">Your name</div>
+              <div class="card-desc">Optional — personalize your welcome message.</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <input id="fr-username-input" class="select-field" type="text" placeholder="User"
+                style="min-width:200px;">
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px; display:flex; align-items:center; justify-content:space-between;">
+            <div style="flex:1;padding-right:12px;">
+              <div class="card-title">Custom home page</div>
+              <div class="card-desc">Optional — set a homepage to open for new windows/tabs.</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <input id="fr-custom-homepage-input" class="select-field" type="text" placeholder="space.cheeter.de"
+                style="min-width:200px;">
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="fr-footer">
+      <div class="fr-progress" id="fr-progress">1 / 3</div>
+      <div class="fr-controls">
+        <button id="prev-btn" class="secondary-btn" disabled>Back</button>
+        <button id="next-btn" class="primary-btn">Next</button>
+        <button id="finish-btn" class="primary-btn" style="display:none;">Finish</button>
+      </div>
+    </footer>
+
+    <script src="onboarding.js"></script>
+    <script>
+      // Modal Overlay Logic
+      (function () {
+        document.body.style.background = 'transparent';
+        const container = document.querySelector('.onboarding-root');
+        if (!container) return;
+
+        const backdrop = document.createElement('div');
+        backdrop.id = 'modal-backdrop';
+        backdrop.style.cssText = "position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter: blur(8px);";
+
+        container.style.width = '95%';
+        container.style.height = '95%';
+        container.style.maxWidth = '1100px';
+        container.style.maxHeight = '900px';
+        container.style.background = 'var(--bg-main)';
+        container.style.borderRadius = '20px';
+        container.style.boxShadow = '0 25px 60px rgba(0,0,0,0.7)';
+        container.style.overflow = 'hidden';
+        container.style.position = 'relative';
+        container.style.border = '1px solid var(--border-color)';
+        container.style.display = 'flex';
+        container.style.flexDirection = 'column';
+
+        document.body.appendChild(backdrop);
+        backdrop.appendChild(container);
+
+        backdrop.addEventListener('click', (e) => {
+          if (e.target === backdrop) {
+            if (window.electronAPI && window.electronAPI.closeOverlay) {
+              window.electronAPI.closeOverlay();
+            }
+          }
+        });
+      })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,408 @@
+@import '../settings/settings.css';
+@import '../fonts/material-symbols.css';
+
+:root {
+  --fr-accent: var(--accent-color);
+}
+
+* {
+  box-sizing: border-box
+}
+
+body {
+  height: 100vh;
+  background: var(--bg-main);
+  color: var(--text-color);
+  font-family: system-ui, sans-serif
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.onboarding-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh
+}
+
+.fr-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 40px;
+  -webkit-app-region: drag;
+}
+
+.fr-brand {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.logo {
+  font-size: 32px
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.fr-title {
+  font-size: 22px;
+  margin: 0;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.fr-sub {
+  opacity: 0.7;
+  margin: 0;
+  font-size: 13px
+}
+
+.fr-main {
+  flex: 1;
+  overflow: auto;
+  padding: 30px 40px
+}
+
+.fr-sections {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px
+}
+
+.fr-section {
+  padding: 30px;
+  border-radius: 12px
+}
+
+.section-title {
+  font-size: 16px;
+  margin-bottom: 6px;
+  font-weight: 700
+}
+
+.section-desc {
+  font-size: 13px;
+  margin-bottom: 30px;
+  opacity: 0.7
+}
+
+.theme-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.theme-tile {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform .14s ease, outline .14s ease, box-shadow .14s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.theme-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.theme-tile .checkmark {
+  width: 28px;
+  height: 28px;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.theme-tile.selected {
+  outline: 3px solid var(--fr-accent);
+  outline-offset: 4px;
+  transform: translateY(-4px);
+}
+
+.theme-tile.selected .checkmark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Search grid */
+.search-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 12px
+}
+
+.search-tile {
+  background: var(--bg-toolbar);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25)
+}
+
+.search-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  overflow: hidden
+}
+
+.search-icon .search-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block
+}
+
+.search-icon .icon {
+  width: 28px;
+  height: 28px;
+}
+
+.search-security {
+  border-radius: 999px;
+  min-width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  overflow: visible
+}
+
+.search-security .shield-icon {
+  width: 28px;
+  height: 28px;
+  line-height: 1
+}
+
+.security-mark {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.search-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.search-desc {
+  font-size: 12px;
+  opacity: 0.6
+}
+
+.search-tile.selected {
+  outline: 2px solid var(--fr-accent)
+}
+
+/* ADD APPS SECTION */
+.apps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.app-category-group {
+  background: var(--bg-toolbar);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.app-category-group:hover {
+  border-color: var(--fr-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.app-category-group summary {
+  cursor: pointer;
+  padding: 14px 16px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+  transition: background 0.15s ease;
+  background: var(--bg-toolbar);
+}
+
+.app-category-group summary:hover {
+  background: var(--bg-element-hover);
+}
+
+.app-category-group[open] summary {
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-element-hover);
+}
+
+.app-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 8px;
+}
+
+.app-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  user-select: none;
+}
+
+.app-item:hover {
+  background: var(--bg-element-hover);
+}
+
+.app-item span {
+  flex: 1;
+}
+
+/* Custom checkbox styling */
+.app-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  background: var(--bg-input);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.app-item input[type="checkbox"]:hover {
+  border-color: var(--fr-accent);
+}
+
+.app-item input[type="checkbox"]:checked {
+  background: var(--fr-accent);
+  border-color: var(--fr-accent);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.app-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fr-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-top: 1px solid var(--border-color)
+}
+
+.fr-controls {
+  display: flex;
+  gap: 12px
+}
+
+.fr-progress {
+  opacity: 0.7
+}
+
+@media (max-width:640px) {
+
+  .fr-header,
+  .fr-main,
+  .fr-footer {
+    padding: 16px
+  }
+}
+
+/* welcome page tweaks */
+#welcome {
+  text-align: center;
+}
+
+#welcome .section-title {
+  font-size: 20px;
+}
+
+#welcome .section-desc {
+  font-size: 14px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* hide internal titles/descs since header shows them */
+.section-title,
+.section-desc {
+  display: none;
+}
+
+/* except on welcome page where we want the text visible */
+#welcome .section-title,
+#welcome .section-desc {
+  display: block;
+}

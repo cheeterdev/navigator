@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mail</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div id="mail-app">
+    <header>
+      <div class="header-content">
+        <button id="sidebar-toggle" title="Sidebar umschalten">☰</button>
+        <h1>Mail</h1>
+        <div class="header-actions">
+          <button id="compose-btn" title="New Mail" aria-label="Neue E-Mail verfassen">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 14.5V18h3.5l10.06-10.06-3.5-3.5L2 14.5zM17.71 6.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.5 3.5 1.83-1.83z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button id="settings-btn" title="Settings" aria-label="Einstellungen">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM8.5 14.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-3a1.5 1.5 0 1 0-3-3v6h6v-6a1.5 1.5 0 0 0-3-3z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div id="status"></div>
+    </header>
+
+    <div id="mail-container">
+      <div id="accounts-sidebar">
+        <div class="sidebar-header">Konten</div>
+        <div id="accounts-list"></div>
+        <div id="no-accounts" class="no-accounts-msg">
+          <p>Keine Konten konfiguriert.</p>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Öffne die Einstellungen um ein Konto hinzuzufügen.</p>
+        </div>
+
+        <div id="folders-section" style="display:none;">
+          <div class="sidebar-header">Posteingänge</div>
+          <div id="folders-list"></div>
+        </div>
+      </div>
+
+      <div id="mail-body">
+        <div id="messages-area">
+          <div id="welcome" class="welcome-msg">
+            <p>Wähle ein Konto um Nachrichten anzuzeigen.</p>
+          </div>
+          <div id="loading" class="loading-msg" style="display:none;">
+            <p>Laden...</p>
+          </div>
+          <div id="messages-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compose Modal -->
+  <div id="compose-modal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Neue E-Mail</h2>
+        <button id="close-compose" class="close-btn">&times;</button>
+      </div>
+      <form id="compose-form">
+        <div class="form-group">
+          <label for="to-input">An:</label>
+          <input type="email" id="to-input" required>
+        </div>
+        <div class="form-group">
+          <label for="subject-input">Betreff:</label>
+          <input type="text" id="subject-input" required>
+        </div>
+        <div class="form-group">
+          <label for="body-input">Nachricht:</label>
+          <textarea id="body-input" rows="10" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cancel-compose">Abbrechen</button>
+          <button type="submit">Senden</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

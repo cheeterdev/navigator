@@ -1,0 +1,9 @@
+[
+  { "name": "Cheeter Spaceᴰᴱ", "category": "Our in-house Solution, uses Google for the best results but will never sell your data.", "icon": "star", "color": "#FFD700", "security": "high" },
+  { "name": "CGWebᴾᴴ", "category": "Search Engine trusted by Governments in Asia, also uses Google for the best results but promises to never sell your data.", "icon": "favorite", "color": "#DC2626", "security": "high" },
+  { "name": "Startpageᴺᴸ", "category": "European Search Engine, often used by Governments worldwide, wont ever track or sell your data.", "icon": "swords", "color": "#800080", "security": "high" },
+  { "name": "DuckDuckGoᵘˢ", "category": "American Search Engine, promises to never sell your data.", "icon": "shield", "color": "orange", "security": "high" },
+  { "name": "Ecosiaᴰᴱ", "category": "German Search Engine aiming to plant trees and protect the environment. Uses Bing results.", "icon": "eco", "color": "#2E7D32", "security": "medium" },
+  { "name": "OceanHeroᴰᴱ", "category": "German Search Engine that protects the oceans and marine life by removing plastic waste from the ocean.", "icon": "water_drop", "color": "#0EA5A4", "security": "medium" },
+  { "name": "Bingᵘˢ", "category": "American Search Engine from Microsoft, Collects your data, Overwhelming UI", "icon": "warning", "color": "#0067C5", "security": "low" }
+]

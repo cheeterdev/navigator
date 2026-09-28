@@ -412,127 +412,62 @@
           <h2 class="section-title">Sidebar Settings</h2>
           <p class="section-desc">Select apps to pin them to the quick access sidebar.</p>
 
-          <div style="margin-bottom: 14px; padding: 12px 14px; background: var(--bg-toolbar); border: 1px solid var(--border-color); border-radius: 10px; display: flex; align-items: center; justify-content: space-between;">
+          <div class="sidebar-settings-toggle">
             <div>
-              <div style="font-size: 14px; font-weight: 600;">Show Bookmarks in Sidebar</div>
-              <div style="font-size: 12px; color: #888;">Display bookmarks in the sidebar instead of under the search bar.</div>
+              <div class="sidebar-toggle-title">Bookmarks Bar</div>
+              <div class="sidebar-toggle-desc">Display bookmarks in the sidebar instead of beneath the address bar.</div>
             </div>
             <label class="switch"><input id="fr-sidebar-bookmarks-checkbox" type="checkbox"><span class="slider"></span></label>
           </div>
 
-          <div class="apps-container">
-            <details class="app-category-group" id="onboarding-arquivo-group" open>
-              <summary><svg class="icon" style="width: 18px; height: 18px;">
-                  <use href="#icon-home"></use>
-                </svg> Arquivo</summary>
-              <div class="app-list">
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_ftp">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-arquivo-ftp"></use>
-                  </svg>
-                  <span>Arquivo FTP</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_photos">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-arquivo-photos"></use>
-                  </svg>
-                  <span>Arquivo Photos</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_tv">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-arquivo-tv"></use>
-                  </svg>
-                  <span>Arquivo TV</span>
-                </label>
-              </div>
-            </details>
+          <div class="setup-app-grid">
+            <label class="setup-app-item">
+              <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_cheeter">
+              <img class="setup-app-icon" src="https://www.google.com/s2/favicons?domain=cheeter.de&sz=64" alt="">
+              <span class="setup-app-label">Cheeter</span>
+            </label>
 
-            <details class="app-category-group" id="onboarding-integrated-group" open>
-              <summary><svg class="icon" style="width: 18px; height: 18px;">
-                  <use href="#icon-settings"></use>
-                </svg> Integrated Apps</summary>
-              <div class="app-list">
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_mail">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-mail"></use>
-                  </svg>
-                  <span>Mail</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_contacts">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-contacts"></use>
-                  </svg>
-                  <span>Contacts</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_calendar">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-calendar"></use>
-                  </svg>
-                  <span>Calendar</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_notes">
-                  <svg class="icon" style="width: 18px; height: 18px;">
-                    <use href="#icon-notes"></use>
-                  </svg>
-                  <span>Notes</span>
-                </label>
-              </div>
-            </details>
+            <label class="setup-app-item">
+              <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_cheeter_hosting">
+              <img class="setup-app-icon" src="https://www.google.com/s2/favicons?domain=hosting.cheeter.de&sz=64" alt="">
+              <span class="setup-app-label">Cheeter Hosting</span>
+            </label>
 
-            <details class="app-category-group" id="onboarding-thirdparty-group" open>
-              <summary><svg class="icon" style="width: 18px; height: 18px;">
-                  <use href="#icon-share"></use>
-                </svg> Third Party Apps</summary>
-              <div class="app-list" id="onboarding-thirdparty-app-list">
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_discord">
-                  <img src="https://www.google.com/s2/favicons?domain=discord.com&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
-                  <span>Discord</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_mastodon">
-                  <img src="https://www.google.com/s2/favicons?domain=mastodon.social&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
-                  <span>Mastodon</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_youtube">
-                  <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
-                  <span>YouTube</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_cheeter_hosting">
-                  <img src="https://www.google.com/s2/favicons?domain=hosting.cheeter.de&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
-                  <span>Cheeter Hosting</span>
-                </label>
-                <label class="app-item">
-                  <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_cheeter">
-                  <img src="https://www.google.com/s2/favicons?domain=cheeter.de&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
-                  <span>Cheeter</span>
-                </label>
-                <div id="onboarding-custom-apps-container"></div>
-                <!-- Inline "add custom app" row styled like an app-item -->
-                <div class="app-item custom-app-add-row" id="onboarding-add-custom-row" title="Add a custom app">
-                  <input type="checkbox" class="checkbox-custom custom-app-dummy-cb" tabindex="-1" disabled>
-                  <img id="onboarding-custom-app-icon" class="custom-app-preview-icon" src="https://www.google.com/s2/favicons?domain=example.com&sz=64" alt="">
-                  <input type="text"
-                    id="onboarding-custom-app-url"
-                    class="custom-app-url-input"
-                    placeholder="https://example.com"
-                    autocomplete="off"
-                    spellcheck="false">
-                  <button type="button" id="onboarding-add-custom-app-btn" class="app-delete-btn app-add-action-btn" title="Add app">+</button>
-                </div>
-                <div id="onboarding-custom-app-error" style="color: var(--error-color, #ef4444); font-size: 12px; display: none; padding: 0 14px 8px;"></div>
+            <label class="setup-app-item">
+              <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_discord">
+              <img class="setup-app-icon" src="https://www.google.com/s2/favicons?domain=discord.com&sz=64" alt="">
+              <span class="setup-app-label">Discord</span>
+            </label>
+
+            <label class="setup-app-item">
+              <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_youtube">
+              <img class="setup-app-icon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" alt="">
+              <span class="setup-app-label">YouTube</span>
+            </label>
+
+            <label class="setup-app-item">
+              <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_mastodon">
+              <img class="setup-app-icon" src="https://www.google.com/s2/favicons?domain=mastodon.social&sz=64" alt="">
+              <span class="setup-app-label">Mastodon</span>
+            </label>
+
+            <div id="onboarding-custom-apps-container"></div>
+
+            <div class="setup-app-item setup-add-custom-item" id="onboarding-add-custom-row" title="Add a custom app">
+              <div class="setup-add-custom-input-wrap">
+                <img id="onboarding-custom-app-icon" class="custom-app-preview-icon" src="https://www.google.com/s2/favicons?domain=example.com&sz=64" alt="">
+                <input type="text"
+                  id="onboarding-custom-app-url"
+                  class="custom-app-url-input"
+                  placeholder="Add custom"
+                  autocomplete="off"
+                  spellcheck="false">
               </div>
-            </details>
+              <button type="button" id="onboarding-add-custom-app-btn" class="app-delete-btn app-add-action-btn" title="Add app">+</button>
+            </div>
           </div>
+
+          <div id="onboarding-custom-app-error" style="color: var(--error-color, #ef4444); font-size: 12px; display: none; margin-top: 10px;"></div>
         </section>
 
         <!-- QUICK SETTINGS (First‑Run) -->

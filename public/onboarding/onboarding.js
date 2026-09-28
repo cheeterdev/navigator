@@ -281,7 +281,7 @@
     onboardingCustomAppsContainer.innerHTML = '';
     customApps.forEach(app => {
       const label = document.createElement('label');
-      label.className = 'app-item';
+      label.className = 'setup-app-item';
       label.dataset.appId = app.id;
 
       const cb = document.createElement('input');
@@ -289,42 +289,41 @@
       cb.className = 'sidebar-app-cb checkbox-custom';
       cb.value = app.id;
       cb.checked = true;
+      cb.addEventListener('change', () => {
+        if (!cb.checked) removeCustomApp(app.id);
+      });
 
       let domain = app.domain;
       if (!domain && app.url) {
         try { domain = new URL(app.url).hostname; } catch(e) { domain = app.url; }
       }
       const img = document.createElement('img');
+      img.className = 'setup-app-icon';
       img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-      img.style.cssText = 'width: 18px; height: 18px; border-radius: 4px;';
       img.onerror = () => { img.style.display = 'none'; };
 
       const span = document.createElement('span');
+      span.className = 'setup-app-label';
       span.textContent = app.name || 'Custom App';
 
-      const delBtn = document.createElement('button');
-      delBtn.type = 'button';
-      delBtn.className = 'app-delete-btn';
-      delBtn.title = 'Delete custom app';
-      delBtn.innerHTML = '&times;';
-      delBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        customApps = customApps.filter(a => a.id !== app.id);
-        if (window.electronAPI && window.electronAPI.setSetting) {
-          window.electronAPI.setSetting('customApps', customApps);
-        } else {
-          localStorage.setItem('customApps', JSON.stringify(customApps));
-        }
-        renderCustomApps();
-      });
-
-      label.appendChild(cb);
-      label.appendChild(img);
-      label.appendChild(span);
-      label.appendChild(delBtn);
+      label.append(cb, img, span);
       onboardingCustomAppsContainer.appendChild(label);
     });
+  }
+
+  function removeCustomApp(id) {
+    customApps = customApps.filter(app => app.id !== id);
+    const sidebarApps = Array.from(document.querySelectorAll('.sidebar-app-cb:checked')).map(cb => cb.value);
+    if (!sidebarApps.includes('ia_rss')) sidebarApps.push('ia_rss');
+
+    if (window.electronAPI && window.electronAPI.setSetting) {
+      window.electronAPI.setSetting('customApps', customApps);
+      window.electronAPI.setSetting('sidebarApps', sidebarApps);
+    } else {
+      localStorage.setItem('customApps', JSON.stringify(customApps));
+      localStorage.setItem('sidebarApps', JSON.stringify(sidebarApps));
+    }
+    renderCustomApps();
   }
 
   function deriveNameFromDomain(domain) {
@@ -612,7 +611,9 @@
   function showSection(idx){
     // update header text before toggling sections
     updateHeaderForSection(idx);
-    sections.forEach((s,i) => { s.style.display = i === idx ? 'block' : 'none'; });
+    sections.forEach((s,i) => {
+      s.style.display = i === idx ? (s.id === 'add-apps-setup' ? 'flex' : 'block') : 'none';
+    });
 
     // customize for welcome page
     if (hasWelcome && idx === 0) {

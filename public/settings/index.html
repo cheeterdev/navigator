@@ -489,15 +489,16 @@
                                     </label>
                                     <div id="settings-custom-apps-container"></div>
                                     <!-- Inline "add custom app" row styled like an app-item -->
-                                    <div class="app-item custom-app-add-row" id="settings-add-custom-row" title="Add a custom app">
-                                      <input type="checkbox" class="checkbox-custom custom-app-dummy-cb" tabindex="-1" disabled>
-                                      <img id="settings-custom-app-icon" class="custom-app-preview-icon" src="https://www.google.com/s2/favicons?domain=example.com&sz=64" alt="">
-                                      <input type="text"
-                                        id="settings-custom-app-url"
-                                        class="custom-app-url-input"
-                                        placeholder="https://example.com"
-                                        autocomplete="off"
-                                        spellcheck="false">
+                                    <div class="app-item custom-app-add-row settings-app-add-tile" id="settings-add-custom-row" title="Add a custom app">
+                                      <div class="settings-app-add-input-wrap">
+                                        <img id="settings-custom-app-icon" class="custom-app-preview-icon" src="https://www.google.com/s2/favicons?domain=example.com&sz=64" alt="">
+                                        <input type="text"
+                                          id="settings-custom-app-url"
+                                          class="custom-app-url-input"
+                                          placeholder="Add custom"
+                                          autocomplete="off"
+                                          spellcheck="false">
+                                      </div>
                                       <button type="button" id="settings-add-custom-app-btn" class="app-delete-btn app-add-action-btn" title="Add app">+</button>
                                     </div>
                                     <div id="settings-custom-app-error" style="color: var(--error-color); font-size: 12px; display: none; padding: 0 14px 8px;"></div>
@@ -2007,33 +2008,28 @@
                         try { domain = new URL(app.url).hostname; } catch(e) { domain = app.url; }
                     }
                     const img = document.createElement('img');
+                    img.className = 'custom-app-preview-icon';
                     img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
-                    img.style.cssText = 'width: 18px; height: 18px; border-radius: 4px;';
                     img.onerror = () => { img.style.display = 'none'; };
 
                     const span = document.createElement('span');
+                    span.className = 'settings-app-label';
                     span.textContent = app.name || 'Custom App';
-
-                    const delBtn = document.createElement('button');
-                    delBtn.type = 'button';
-                    delBtn.className = 'app-delete-btn';
-                    delBtn.title = 'Delete custom app';
-                    delBtn.innerHTML = '&times;';
-                    delBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        deleteCustomApp(app.id);
-                    });
 
                     label.appendChild(cb);
                     label.appendChild(img);
                     label.appendChild(span);
-                    label.appendChild(delBtn);
                     customAppsContainer.appendChild(label);
                 });
             }
 
-            function onAppCheckboxChange() {
+            function onAppCheckboxChange(event) {
+                const checkbox = event.currentTarget;
+                if (!checkbox.checked && currentCustomApps.some(app => app.id === checkbox.value)) {
+                    deleteCustomApp(checkbox.value);
+                    return;
+                }
+
                 const selected = Array.from(document.querySelectorAll('#sidebar .sidebar-app-cb:checked')).map(cb => cb.value);
                 if (!selected.includes('ia_rss')) selected.push('ia_rss');
                 currentSidebarApps = selected;
@@ -2047,6 +2043,7 @@
             function deleteCustomApp(id) {
                 currentCustomApps = currentCustomApps.filter(a => a.id !== id);
                 currentSidebarApps = currentSidebarApps.filter(v => v !== id);
+                if (!currentSidebarApps.includes('ia_rss')) currentSidebarApps.push('ia_rss');
                 saveSetting('customApps', currentCustomApps);
                 saveSetting('sidebarApps', currentSidebarApps);
                 renderCustomApps();

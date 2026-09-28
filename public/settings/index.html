@@ -139,6 +139,39 @@
             <polyline points="16 18 22 12 16 6"></polyline>
             <polyline points="8 6 2 12 8 18"></polyline>
         </symbol>
+        <symbol id="icon-arquivo-ftp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 21 6 12 2 12"></polyline>
+            <polyline points="2 9 22 9"></polyline>
+        </symbol>
+        <symbol id="icon-arquivo-photos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+        </symbol>
+        <symbol id="icon-arquivo-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+            <polyline points="17 2 12 7 7 2"></polyline>
+        </symbol>
+        <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-10 5L2 7"></path>
+        </symbol>
+        <symbol id="icon-contacts" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+        </symbol>
+        <symbol id="icon-notes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+        </symbol>
     </defs>
 </svg>
 
@@ -152,6 +185,7 @@
                 <a href="#general" class="nav-item active" data-section="general"><svg class="icon"><use href="#icon-settings"></use></svg> General</a>
                 <a href="#privacy" class="nav-item" data-section="privacy"><svg class="icon"><use href="#icon-shield"></use></svg> Privacy & Security</a>
                 <a href="#appearance" class="nav-item" data-section="appearance"><svg class="icon"><use href="#icon-palette"></use></svg> Appearance</a>
+                <a href="#sidebar" class="nav-item" data-section="sidebar"><svg class="icon"><use href="#icon-sidebar"></use></svg> Sidebar</a>
                 <a href="#search" class="nav-item" data-section="search"><svg class="icon"><use href="#icon-search"></use></svg> Search Engine</a>
                 <a href="#sync" class="nav-item" data-section="sync"><svg class="icon"><use href="#icon-sync"></use></svg> Sync</a>
                 
@@ -355,6 +389,121 @@
                         <div class="card">
                             <div class="card-info"><div class="card-title">Custom Theme Colors</div><div class="card-desc">Customize the colors of the browser UI.</div></div>
                             <input type="color" class="color-picker" id="primary-color-picker" title="Primary Color" value="#1E88E5">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="sidebar" class="settings-section">
+                    <h1 class="page-title">Sidebar</h1>
+                    <div class="settings-group">
+                        <h2 class="group-label">Bookmarks Display</h2>
+                        <div class="card">
+                            <div class="card-info">
+                                <div class="card-title">Show Bookmarks in Sidebar</div>
+                                <div class="card-desc">Display bookmarks in the sidebar instead of the bookmark bar below the address bar.</div>
+                            </div>
+                            <div class="card-action">
+                                <label class="switch"><input id="settings-sidebar-bookmarks-cb" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h2 class="group-label">Sidebar Apps</h2>
+                        <p class="section-desc" style="margin-bottom: 12px; color: #888; font-size: 13px;">Select apps to pin them to the quick access sidebar.</p>
+                        <div class="apps-container">
+                            <details class="app-category-group" id="settings-arquivo-group" open>
+                                <summary><svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-home"></use></svg> Arquivo</summary>
+                                <div class="app-list">
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_ftp">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-arquivo-ftp"></use></svg>
+                                        <span>Arquivo FTP</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_photos">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-arquivo-photos"></use></svg>
+                                        <span>Arquivo Photos</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ab_tv">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-arquivo-tv"></use></svg>
+                                        <span>Arquivo TV</span>
+                                    </label>
+                                </div>
+                            </details>
+
+                            <details class="app-category-group" id="settings-integrated-group" open>
+                                <summary><svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-settings"></use></svg> Integrated Apps</summary>
+                                <div class="app-list">
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_mail">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-mail"></use></svg>
+                                        <span>Mail</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_contacts">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-contacts"></use></svg>
+                                        <span>Contacts</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_calendar">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-calendar"></use></svg>
+                                        <span>Calendar</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="ia_notes">
+                                        <svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-notes"></use></svg>
+                                        <span>Notes</span>
+                                    </label>
+                                </div>
+                            </details>
+
+                            <details class="app-category-group" id="settings-thirdparty-group" open>
+                                <summary><svg class="icon" style="width: 18px; height: 18px;"><use href="#icon-share"></use></svg> Third Party Apps</summary>
+                                <div class="app-list" id="settings-thirdparty-app-list">
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_discord">
+                                        <img src="https://www.google.com/s2/favicons?domain=discord.com&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
+                                        <span>Discord</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_mastodon">
+                                        <img src="https://www.google.com/s2/favicons?domain=mastodon.social&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
+                                        <span>Mastodon</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_youtube">
+                                        <img src="https://www.google.com/s2/favicons?domain=youtube.com&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
+                                        <span>YouTube</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_cheeter_hosting">
+                                        <img src="https://www.google.com/s2/favicons?domain=hosting.cheeter.de&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
+                                        <span>Cheeter Hosting</span>
+                                    </label>
+                                    <label class="app-item">
+                                        <input type="checkbox" class="sidebar-app-cb checkbox-custom" value="tp_cheeter">
+                                        <img src="https://www.google.com/s2/favicons?domain=cheeter.de&sz=64" style="width: 18px; height: 18px; border-radius: 4px;">
+                                        <span>Cheeter</span>
+                                    </label>
+                                    <div id="settings-custom-apps-container"></div>
+                                    <!-- Inline "add custom app" row styled like an app-item -->
+                                    <div class="app-item custom-app-add-row" id="settings-add-custom-row" title="Add a custom app">
+                                      <input type="checkbox" class="checkbox-custom custom-app-dummy-cb" tabindex="-1" disabled>
+                                      <img id="settings-custom-app-icon" class="custom-app-preview-icon" src="https://www.google.com/s2/favicons?domain=example.com&sz=64" alt="">
+                                      <input type="text"
+                                        id="settings-custom-app-url"
+                                        class="custom-app-url-input"
+                                        placeholder="https://example.com"
+                                        autocomplete="off"
+                                        spellcheck="false">
+                                      <button type="button" id="settings-add-custom-app-btn" class="app-delete-btn app-add-action-btn" title="Add app">+</button>
+                                    </div>
+                                    <div id="settings-custom-app-error" style="color: var(--error-color); font-size: 12px; display: none; padding: 0 14px 8px;"></div>
+                                </div>
+                            </details>
+                        </div>
                     </div>
                 </section>
 
@@ -367,7 +516,7 @@
                             <div class="card-action" style="display:flex;align-items:center;gap:8px;">
                                 <select class="select-field" id="search-engine-selector" style="flex:1;">
                                     <optgroup label="Featured, Secure">
-                                        <option value="Cheeter Space">Cheeter Spaceᴰᴱ</option>
+                                        <option value="Cheeter Space" id="opt-cheeter-space">Cheeter Spaceᴰᴱ</option>
                                         <option value="CGWeb">CGWebᴾᴴ</option>
                                         <option value="Startpage">Startpageᴺᴸ</option>
                                     </optgroup>
@@ -508,10 +657,34 @@
 
                 <section id="developer" class="settings-section">
                     <h1 class="page-title">Developer</h1>
-                    <div class="card">
-                        <div class="card-info">
-                            <div class="card-title">Developer Options</div>
-                            <div class="card-desc">Developer mode is active. Advanced developer settings will be available here soon.</div>
+                    <div class="settings-group">
+                        <h2 class="group-label">Developer Options</h2>
+                        <div class="card">
+                            <div class="card-info">
+                                <div class="card-title">Auto-open DevTools on Startup</div>
+                                <div class="card-desc">Automatically open Developer Tools when Navigator starts.</div>
+                            </div>
+                            <div class="card-action">
+                                <label class="switch"><input id="dev-auto-devtools-checkbox" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info">
+                                <div class="card-title">Show Cheeter Space Search Engine</div>
+                                <div class="card-desc">Display Cheeter Space in Setup and Settings search engine selections.</div>
+                            </div>
+                            <div class="card-action">
+                                <label class="switch"><input id="dev-show-cheeter-space-checkbox" type="checkbox"><span class="slider"></span></label>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-info">
+                                <div class="card-title">Show Arquivo & Integrated Apps</div>
+                                <div class="card-desc">Display Arquivo and Integrated Apps options in the Sidebar settings and Setup pages.</div>
+                            </div>
+                            <div class="card-action">
+                                <label class="switch"><input id="dev-show-arquivo-integrated-checkbox" type="checkbox"><span class="slider"></span></label>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -787,8 +960,20 @@
         // Search Engine selector wiring
         (function(){
             const selector = document.getElementById('search-engine-selector');
-            const DEFAULT_ENGINE = 'Cheeter Space';
+            const optCheeterSpace = document.getElementById('opt-cheeter-space');
+            const DEFAULT_ENGINE = 'CGWeb';
             if (!selector) return;
+
+            function applyCheeterSpaceVisibility(show) {
+                if (optCheeterSpace) {
+                    optCheeterSpace.hidden = !show;
+                    optCheeterSpace.style.display = show ? '' : 'none';
+                    if (!show && selector.value === 'Cheeter Space') {
+                        selector.value = 'CGWeb';
+                        saveEngine('CGWeb');
+                    }
+                }
+            }
 
             function saveEngine(v){
                 try {
@@ -801,14 +986,28 @@
             }
 
             function loadAndApply(s){
-                const v = (s && s.searchEngine) ? s.searchEngine : (localStorage.getItem('searchEngine') || DEFAULT_ENGINE);
+                const showCheeter = !!(s && s.developerShowCheeterSpace);
+                applyCheeterSpaceVisibility(showCheeter);
+                const defaultEng = showCheeter ? 'Cheeter Space' : 'CGWeb';
+                const v = (s && s.searchEngine) ? s.searchEngine : (localStorage.getItem('searchEngine') || defaultEng);
                 selector.value = v;
+                if (!showCheeter && selector.value === 'Cheeter Space') {
+                    selector.value = 'CGWeb';
+                }
             }
 
             if (window.electronAPI && window.electronAPI.getSettings) {
                 window.electronAPI.getSettings().then(loadAndApply).catch(() => loadAndApply(null));
                 if (window.electronAPI.onSettingsUpdated) {
-                    window.electronAPI.onSettingsUpdated((s) => { selector.value = s && s.searchEngine ? s.searchEngine : (localStorage.getItem('searchEngine') || DEFAULT_ENGINE); });
+                    window.electronAPI.onSettingsUpdated((s) => {
+                        const showCheeter = !!(s && s.developerShowCheeterSpace);
+                        applyCheeterSpaceVisibility(showCheeter);
+                        const defaultEng = showCheeter ? 'Cheeter Space' : 'CGWeb';
+                        selector.value = s && s.searchEngine ? s.searchEngine : (localStorage.getItem('searchEngine') || defaultEng);
+                        if (!showCheeter && selector.value === 'Cheeter Space') {
+                            selector.value = 'CGWeb';
+                        }
+                    });
                 }
             } else {
                 loadAndApply(null);
@@ -1752,6 +1951,332 @@
             checkbox.addEventListener('change', (e) => {
                 setDevMode(e.target.checked);
             });
+        })();
+
+        // Developer Options & Sidebar Settings Wiring
+        (function() {
+            const devAutoDevtoolsCb = document.getElementById('dev-auto-devtools-checkbox');
+            const devShowCheeterSpaceCb = document.getElementById('dev-show-cheeter-space-checkbox');
+            const devShowArquivoIntegratedCb = document.getElementById('dev-show-arquivo-integrated-checkbox');
+
+            const sidebarBookmarksCb = document.getElementById('settings-sidebar-bookmarks-cb');
+            const arquivoGroup = document.getElementById('settings-arquivo-group');
+            const integratedGroup = document.getElementById('settings-integrated-group');
+            const customAppsContainer = document.getElementById('settings-custom-apps-container');
+            const customAppUrlInput = document.getElementById('settings-custom-app-url');
+            const addCustomAppBtn = document.getElementById('settings-add-custom-app-btn');
+            const customAppError = document.getElementById('settings-custom-app-error');
+
+            let currentCustomApps = [];
+            let currentSidebarApps = [];
+
+            function saveSetting(key, val) {
+                try {
+                    if (window.electronAPI && window.electronAPI.setSetting) {
+                        window.electronAPI.setSetting(key, val);
+                    } else {
+                        localStorage.setItem(key, typeof val === 'object' ? JSON.stringify(val) : String(val));
+                        window.dispatchEvent(new CustomEvent('settings-changed', { detail: { [key]: val } }));
+                    }
+                } catch(e) { console.error(e); }
+            }
+
+            function updateSidebarCheckboxes() {
+                document.querySelectorAll('#sidebar .sidebar-app-cb').forEach(cb => {
+                    cb.checked = currentSidebarApps.includes(cb.value);
+                });
+            }
+
+            function renderCustomApps() {
+                if (!customAppsContainer) return;
+                customAppsContainer.innerHTML = '';
+                currentCustomApps.forEach(app => {
+                    const label = document.createElement('label');
+                    label.className = 'app-item';
+                    label.dataset.appId = app.id;
+
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.className = 'sidebar-app-cb checkbox-custom';
+                    cb.value = app.id;
+                    cb.checked = currentSidebarApps.includes(app.id);
+                    cb.addEventListener('change', onAppCheckboxChange);
+
+                    let domain = app.domain;
+                    if (!domain && app.url) {
+                        try { domain = new URL(app.url).hostname; } catch(e) { domain = app.url; }
+                    }
+                    const img = document.createElement('img');
+                    img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                    img.style.cssText = 'width: 18px; height: 18px; border-radius: 4px;';
+                    img.onerror = () => { img.style.display = 'none'; };
+
+                    const span = document.createElement('span');
+                    span.textContent = app.name || 'Custom App';
+
+                    const delBtn = document.createElement('button');
+                    delBtn.type = 'button';
+                    delBtn.className = 'app-delete-btn';
+                    delBtn.title = 'Delete custom app';
+                    delBtn.innerHTML = '&times;';
+                    delBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        deleteCustomApp(app.id);
+                    });
+
+                    label.appendChild(cb);
+                    label.appendChild(img);
+                    label.appendChild(span);
+                    label.appendChild(delBtn);
+                    customAppsContainer.appendChild(label);
+                });
+            }
+
+            function onAppCheckboxChange() {
+                const selected = Array.from(document.querySelectorAll('#sidebar .sidebar-app-cb:checked')).map(cb => cb.value);
+                if (!selected.includes('ia_rss')) selected.push('ia_rss');
+                currentSidebarApps = selected;
+                saveSetting('sidebarApps', selected);
+            }
+
+            document.querySelectorAll('#sidebar .sidebar-app-cb').forEach(cb => {
+                cb.addEventListener('change', onAppCheckboxChange);
+            });
+
+            function deleteCustomApp(id) {
+                currentCustomApps = currentCustomApps.filter(a => a.id !== id);
+                currentSidebarApps = currentSidebarApps.filter(v => v !== id);
+                saveSetting('customApps', currentCustomApps);
+                saveSetting('sidebarApps', currentSidebarApps);
+                renderCustomApps();
+            }
+
+            function deriveNameFromDomain(domain) {
+                if (!domain) return 'Custom App';
+                const clean = domain.replace(/^www\./i, '');
+                const main = clean.split('.')[0] || clean;
+                const brandMap = {
+                    'youtube': 'YouTube',
+                    'github': 'GitHub',
+                    'discord': 'Discord',
+                    'mastodon': 'Mastodon',
+                    'reddit': 'Reddit',
+                    'twitter': 'Twitter',
+                    'twitch': 'Twitch',
+                    'spotify': 'Spotify',
+                    'whatsapp': 'WhatsApp',
+                    'telegram': 'Telegram',
+                    'instagram': 'Instagram',
+                    'facebook': 'Facebook',
+                    'linkedin': 'LinkedIn',
+                    'netflix': 'Netflix',
+                    'wikipedia': 'Wikipedia',
+                    'amazon': 'Amazon',
+                    'google': 'Google'
+                };
+                if (brandMap[main.toLowerCase()]) return brandMap[main.toLowerCase()];
+                return main.charAt(0).toUpperCase() + main.slice(1);
+            }
+
+            async function resolvePageTitle(url, domain) {
+                if (window.electronAPI && window.electronAPI.getPageTitle) {
+                    try {
+                        const raw = await window.electronAPI.getPageTitle(url);
+                        if (raw && raw.trim()) {
+                            let t = raw.trim();
+                            const seps = [' | ', ' - ', ' — ', ' · ', ' • '];
+                            for (const sep of seps) {
+                                if (t.includes(sep)) {
+                                    const parts = t.split(sep).map(p => p.trim()).filter(Boolean);
+                                    if (parts[0] && parts[0].length >= 2 && parts[0].length <= 25) {
+                                        t = parts[0];
+                                        break;
+                                    } else if (parts[parts.length - 1] && parts[parts.length - 1].length >= 2 && parts[parts.length - 1].length <= 25) {
+                                        t = parts[parts.length - 1];
+                                        break;
+                                    }
+                                }
+                            }
+                            if (t.length > 25) t = t.slice(0, 25).trim();
+                            if (t) return t;
+                        }
+                    } catch(e) {}
+                }
+                return deriveNameFromDomain(domain);
+            }
+
+            const previewIcon = document.getElementById('settings-custom-app-icon');
+            const addRowEl = document.getElementById('settings-add-custom-row');
+
+            if (addRowEl && customAppUrlInput) {
+                addRowEl.addEventListener('click', (e) => {
+                    if (e.target !== addCustomAppBtn && !e.target.closest('#settings-add-custom-app-btn')) {
+                        customAppUrlInput.focus();
+                    }
+                });
+            }
+
+            if (customAppUrlInput) {
+                customAppUrlInput.addEventListener('input', () => {
+                    let val = customAppUrlInput.value.trim();
+                    if (!previewIcon) return;
+                    if (!val) {
+                        previewIcon.src = 'https://www.google.com/s2/favicons?domain=example.com&sz=64';
+                        return;
+                    }
+                    if (!/^https?:\/\//i.test(val)) val = 'https://' + val;
+                    try {
+                        const d = new URL(val).hostname;
+                        if (d && d.includes('.')) {
+                            previewIcon.src = `https://www.google.com/s2/favicons?domain=${d}&sz=64`;
+                        }
+                    } catch(e) {}
+                });
+            }
+
+            async function addCustomAppFromUrl() {
+                let url = (customAppUrlInput ? customAppUrlInput.value : '').trim();
+
+                if (!url) {
+                    if (customAppError) {
+                        customAppError.textContent = 'Please enter a URL.';
+                        customAppError.style.display = 'block';
+                    }
+                    return;
+                }
+
+                if (!/^https?:\/\//i.test(url)) {
+                    url = 'https://' + url;
+                }
+
+                let domain = '';
+                try {
+                    domain = new URL(url).hostname;
+                } catch(e) {
+                    if (customAppError) {
+                        customAppError.textContent = 'Please enter a valid URL.';
+                        customAppError.style.display = 'block';
+                    }
+                    return;
+                }
+
+                if (!domain || !domain.includes('.')) {
+                    if (customAppError) {
+                        customAppError.textContent = 'Please enter a valid URL (e.g. https://example.com).';
+                        customAppError.style.display = 'block';
+                    }
+                    return;
+                }
+
+                if (customAppError) customAppError.style.display = 'none';
+
+                const name = await resolvePageTitle(url, domain);
+
+                const newApp = {
+                    id: 'tp_custom_' + Date.now(),
+                    name: name,
+                    url: url,
+                    domain: domain,
+                    cat: 'thirdparty',
+                    icon: 'favicon'
+                };
+
+                currentCustomApps.push(newApp);
+                if (!currentSidebarApps.includes(newApp.id)) {
+                    currentSidebarApps.push(newApp.id);
+                }
+
+                saveSetting('customApps', currentCustomApps);
+                saveSetting('sidebarApps', currentSidebarApps);
+
+                if (customAppUrlInput) customAppUrlInput.value = '';
+                if (previewIcon) previewIcon.src = 'https://www.google.com/s2/favicons?domain=example.com&sz=64';
+
+                renderCustomApps();
+            }
+
+            if (addCustomAppBtn) {
+                addCustomAppBtn.addEventListener('click', addCustomAppFromUrl);
+            }
+            if (customAppUrlInput) {
+                customAppUrlInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') { e.preventDefault(); addCustomAppFromUrl(); }
+                });
+            }
+
+            if (devAutoDevtoolsCb) {
+                devAutoDevtoolsCb.addEventListener('change', (e) => {
+                    saveSetting('developerAutoOpenDevTools', e.target.checked);
+                    saveSetting('autoOpenDevTools', e.target.checked);
+                });
+            }
+
+            if (devShowCheeterSpaceCb) {
+                devShowCheeterSpaceCb.addEventListener('change', (e) => {
+                    saveSetting('developerShowCheeterSpace', e.target.checked);
+                });
+            }
+
+            if (devShowArquivoIntegratedCb) {
+                devShowArquivoIntegratedCb.addEventListener('change', (e) => {
+                    saveSetting('developerShowArquivoAndIntegrated', e.target.checked);
+                    applyArquivoIntegratedVisibility(e.target.checked);
+                });
+            }
+
+            if (sidebarBookmarksCb) {
+                sidebarBookmarksCb.addEventListener('change', (e) => {
+                    saveSetting('bookmarksInSidebar', e.target.checked);
+                });
+            }
+
+            function applyArquivoIntegratedVisibility(show) {
+                if (arquivoGroup) arquivoGroup.style.display = show ? '' : 'none';
+                if (integratedGroup) integratedGroup.style.display = show ? '' : 'none';
+            }
+
+            function loadAndApplyAll(s) {
+                const autoDevtools = (s && typeof s.developerAutoOpenDevTools !== 'undefined')
+                    ? !!s.developerAutoOpenDevTools
+                    : (s && typeof s.autoOpenDevTools !== 'undefined' ? !!s.autoOpenDevTools : (localStorage.getItem('developerAutoOpenDevTools') === 'true'));
+                if (devAutoDevtoolsCb) devAutoDevtoolsCb.checked = autoDevtools;
+
+                const showCheeter = (s && typeof s.developerShowCheeterSpace !== 'undefined')
+                    ? !!s.developerShowCheeterSpace
+                    : (localStorage.getItem('developerShowCheeterSpace') === 'true');
+                if (devShowCheeterSpaceCb) devShowCheeterSpaceCb.checked = showCheeter;
+
+                const showArquivoIntegrated = (s && typeof s.developerShowArquivoAndIntegrated !== 'undefined')
+                    ? !!s.developerShowArquivoAndIntegrated
+                    : (localStorage.getItem('developerShowArquivoAndIntegrated') === 'true');
+                if (devShowArquivoIntegratedCb) devShowArquivoIntegratedCb.checked = showArquivoIntegrated;
+                applyArquivoIntegratedVisibility(showArquivoIntegrated);
+
+                const bmInSidebar = (s && typeof s.bookmarksInSidebar !== 'undefined')
+                    ? !!s.bookmarksInSidebar
+                    : (localStorage.getItem('bookmarksInSidebar') === 'true');
+                if (sidebarBookmarksCb) sidebarBookmarksCb.checked = bmInSidebar;
+
+                currentSidebarApps = (s && Array.isArray(s.sidebarApps))
+                    ? s.sidebarApps
+                    : JSON.parse(localStorage.getItem('sidebarApps') || '[]');
+                currentCustomApps = (s && Array.isArray(s.customApps))
+                    ? s.customApps
+                    : JSON.parse(localStorage.getItem('customApps') || '[]');
+
+                renderCustomApps();
+                updateSidebarCheckboxes();
+            }
+
+            if (window.electronAPI && window.electronAPI.getSettings) {
+                window.electronAPI.getSettings().then(loadAndApplyAll).catch(() => loadAndApplyAll(null));
+                if (window.electronAPI.onSettingsUpdated) {
+                    window.electronAPI.onSettingsUpdated(loadAndApplyAll);
+                }
+            } else {
+                loadAndApplyAll(null);
+            }
         })();
 
         // Modal Overlay Logic

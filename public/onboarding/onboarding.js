@@ -22,6 +22,18 @@
   const frDisposableSwitch = document.getElementById('fr-disposable-switch');
   const frUsernameInput = document.getElementById('fr-username-input');
   const frCustomHomepageInput = document.getElementById('fr-custom-homepage-input');
+  const frSidebarBookmarksCb = document.getElementById('fr-sidebar-bookmarks-checkbox');
+  const onboardingArquivoGroup = document.getElementById('onboarding-arquivo-group');
+  const onboardingIntegratedGroup = document.getElementById('onboarding-integrated-group');
+  const onboardingCustomAppsContainer = document.getElementById('onboarding-custom-apps-container');
+  const onboardingCustomAppUrl = document.getElementById('onboarding-custom-app-url');
+  const onboardingAddCustomAppBtn = document.getElementById('onboarding-add-custom-app-btn');
+  const onboardingCustomAppError = document.getElementById('onboarding-custom-app-error');
+
+  let developerShowCheeterSpace = false;
+  let developerShowArquivoAndIntegrated = false;
+  let customApps = [];
+
   const skipBtn = document.getElementById('skip-setup'); // may be null if header button removed
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
@@ -169,7 +181,12 @@
     searchList.className = 'search-grid';
     searchList.innerHTML = '';
 
-    availableSearchEngines.forEach((se) => {
+    let enginesToRender = availableSearchEngines;
+    if (!developerShowCheeterSpace) {
+      enginesToRender = availableSearchEngines.filter(se => !((se.name || '').toLowerCase().includes('cheeter')));
+    }
+
+    enginesToRender.forEach((se) => {
       const el = document.createElement('div');
       el.className = 'search-tile';
       el.dataset.name = se.name;
@@ -230,8 +247,10 @@
     });
 
     // apply preselected from settings or default
-    const defaultEng = (availableSearchEngines[0] && availableSearchEngines[0].name) || null;
-    if (!selectedSearch) selectedSearch = defaultEng;
+    const defaultEng = (enginesToRender[0] && enginesToRender[0].name) || null;
+    if (!selectedSearch || (!developerShowCheeterSpace && (selectedSearch || '').toLowerCase().includes('cheeter'))) {
+      selectedSearch = defaultEng;
+    }
     applySearchSelection();
   }
 
@@ -252,11 +271,231 @@
   // legacy placeholder removed
 
 
+  function applyArquivoIntegratedVisibility(show) {
+    if (onboardingArquivoGroup) onboardingArquivoGroup.style.display = show ? '' : 'none';
+    if (onboardingIntegratedGroup) onboardingIntegratedGroup.style.display = show ? '' : 'none';
+  }
+
+  function renderCustomApps() {
+    if (!onboardingCustomAppsContainer) return;
+    onboardingCustomAppsContainer.innerHTML = '';
+    customApps.forEach(app => {
+      const label = document.createElement('label');
+      label.className = 'app-item';
+      label.dataset.appId = app.id;
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.className = 'sidebar-app-cb checkbox-custom';
+      cb.value = app.id;
+      cb.checked = true;
+
+      let domain = app.domain;
+      if (!domain && app.url) {
+        try { domain = new URL(app.url).hostname; } catch(e) { domain = app.url; }
+      }
+      const img = document.createElement('img');
+      img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+      img.style.cssText = 'width: 18px; height: 18px; border-radius: 4px;';
+      img.onerror = () => { img.style.display = 'none'; };
+
+      const span = document.createElement('span');
+      span.textContent = app.name || 'Custom App';
+
+      const delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.className = 'app-delete-btn';
+      delBtn.title = 'Delete custom app';
+      delBtn.innerHTML = '&times;';
+      delBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        customApps = customApps.filter(a => a.id !== app.id);
+        if (window.electronAPI && window.electronAPI.setSetting) {
+          window.electronAPI.setSetting('customApps', customApps);
+        } else {
+          localStorage.setItem('customApps', JSON.stringify(customApps));
+        }
+        renderCustomApps();
+      });
+
+      label.appendChild(cb);
+      label.appendChild(img);
+      label.appendChild(span);
+      label.appendChild(delBtn);
+      onboardingCustomAppsContainer.appendChild(label);
+    });
+  }
+
+  function deriveNameFromDomain(domain) {
+    if (!domain) return 'Custom App';
+    const clean = domain.replace(/^www\./i, '');
+    const main = clean.split('.')[0] || clean;
+    const brandMap = {
+      'youtube': 'YouTube',
+      'github': 'GitHub',
+      'discord': 'Discord',
+      'mastodon': 'Mastodon',
+      'reddit': 'Reddit',
+      'twitter': 'Twitter',
+      'twitch': 'Twitch',
+      'spotify': 'Spotify',
+      'whatsapp': 'WhatsApp',
+      'telegram': 'Telegram',
+      'instagram': 'Instagram',
+      'facebook': 'Facebook',
+      'linkedin': 'LinkedIn',
+      'netflix': 'Netflix',
+      'wikipedia': 'Wikipedia',
+      'amazon': 'Amazon',
+      'google': 'Google'
+    };
+    if (brandMap[main.toLowerCase()]) return brandMap[main.toLowerCase()];
+    return main.charAt(0).toUpperCase() + main.slice(1);
+  }
+
+  async function resolvePageTitle(url, domain) {
+    if (window.electronAPI && window.electronAPI.getPageTitle) {
+      try {
+        const raw = await window.electronAPI.getPageTitle(url);
+        if (raw && raw.trim()) {
+          let t = raw.trim();
+          const seps = [' | ', ' - ', ' — ', ' · ', ' • '];
+          for (const sep of seps) {
+            if (t.includes(sep)) {
+              const parts = t.split(sep).map(p => p.trim()).filter(Boolean);
+              if (parts[0] && parts[0].length >= 2 && parts[0].length <= 25) {
+                t = parts[0];
+                break;
+              } else if (parts[parts.length - 1] && parts[parts.length - 1].length >= 2 && parts[parts.length - 1].length <= 25) {
+                t = parts[parts.length - 1];
+                break;
+              }
+            }
+          }
+          if (t.length > 25) t = t.slice(0, 25).trim();
+          if (t) return t;
+        }
+      } catch(e) {}
+    }
+    return deriveNameFromDomain(domain);
+  }
+
+  const onboardingPreviewIcon = document.getElementById('onboarding-custom-app-icon');
+  const onboardingAddRowEl = document.getElementById('onboarding-add-custom-row');
+
+  if (onboardingAddRowEl && onboardingCustomAppUrl) {
+    onboardingAddRowEl.addEventListener('click', (e) => {
+      if (e.target !== onboardingAddCustomAppBtn && !e.target.closest('#onboarding-add-custom-app-btn')) {
+        onboardingCustomAppUrl.focus();
+      }
+    });
+  }
+
+  if (onboardingCustomAppUrl) {
+    onboardingCustomAppUrl.addEventListener('input', () => {
+      let val = onboardingCustomAppUrl.value.trim();
+      if (!onboardingPreviewIcon) return;
+      if (!val) {
+        onboardingPreviewIcon.src = 'https://www.google.com/s2/favicons?domain=example.com&sz=64';
+        return;
+      }
+      if (!/^https?:\/\//i.test(val)) val = 'https://' + val;
+      try {
+        const d = new URL(val).hostname;
+        if (d && d.includes('.')) {
+          onboardingPreviewIcon.src = `https://www.google.com/s2/favicons?domain=${d}&sz=64`;
+        }
+      } catch(e) {}
+    });
+  }
+
+  async function addCustomAppFromUrl() {
+    let url = (onboardingCustomAppUrl ? onboardingCustomAppUrl.value : '').trim();
+
+    if (!url) {
+      if (onboardingCustomAppError) {
+        onboardingCustomAppError.textContent = 'Please enter a URL.';
+        onboardingCustomAppError.style.display = 'block';
+      }
+      return;
+    }
+
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
+    }
+
+    let domain = '';
+    try {
+      domain = new URL(url).hostname;
+    } catch(e) {
+      if (onboardingCustomAppError) {
+        onboardingCustomAppError.textContent = 'Please enter a valid URL.';
+        onboardingCustomAppError.style.display = 'block';
+      }
+      return;
+    }
+
+    if (!domain || !domain.includes('.')) {
+      if (onboardingCustomAppError) {
+        onboardingCustomAppError.textContent = 'Please enter a valid URL (e.g. https://example.com).';
+        onboardingCustomAppError.style.display = 'block';
+      }
+      return;
+    }
+
+    if (onboardingCustomAppError) onboardingCustomAppError.style.display = 'none';
+
+    const name = await resolvePageTitle(url, domain);
+
+    const newApp = {
+      id: 'tp_custom_' + Date.now(),
+      name: name,
+      url: url,
+      domain: domain,
+      cat: 'thirdparty',
+      icon: 'favicon'
+    };
+
+    customApps.push(newApp);
+    if (window.electronAPI && window.electronAPI.setSetting) {
+      window.electronAPI.setSetting('customApps', customApps);
+    } else {
+      localStorage.setItem('customApps', JSON.stringify(customApps));
+    }
+
+    if (onboardingCustomAppUrl) onboardingCustomAppUrl.value = '';
+    if (onboardingPreviewIcon) onboardingPreviewIcon.src = 'https://www.google.com/s2/favicons?domain=example.com&sz=64';
+
+    renderCustomApps();
+  }
+
+  if (onboardingAddCustomAppBtn) {
+    onboardingAddCustomAppBtn.addEventListener('click', addCustomAppFromUrl);
+  }
+  if (onboardingCustomAppUrl) {
+    onboardingCustomAppUrl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); addCustomAppFromUrl(); }
+    });
+  }
+
   function loadSaved(){
     const loadFromSettings = window.electronAPI && window.electronAPI.getSettings;
     if (loadFromSettings){
       window.electronAPI.getSettings().then(s => {
         if (!s) return;
+        developerShowCheeterSpace = !!s.developerShowCheeterSpace;
+        developerShowArquivoAndIntegrated = !!s.developerShowArquivoAndIntegrated;
+        applyArquivoIntegratedVisibility(developerShowArquivoAndIntegrated);
+
+        if (s && typeof s.bookmarksInSidebar !== 'undefined' && frSidebarBookmarksCb) {
+          frSidebarBookmarksCb.checked = !!s.bookmarksInSidebar;
+        }
+        if (s && Array.isArray(s.customApps)) {
+          customApps = s.customApps;
+        }
+        renderCustomApps();
+
         // Theme mapping: if a saved theme was 'theme-custom' or missing, fall back to 'theme-default'
         const savedTheme = (s.theme === 'theme-custom' || !s.theme) ? 'theme-default' : s.theme;
         if (savedTheme) {
@@ -280,9 +519,20 @@
             });
         }
 
-        applySearchSelection();
+        if (availableSearchEngines.length > 0) renderSearchTiles();
+        else applySearchSelection();
       }).catch(()=>{});
     } else {
+      developerShowCheeterSpace = (localStorage.getItem('developerShowCheeterSpace') === 'true');
+      developerShowArquivoAndIntegrated = (localStorage.getItem('developerShowArquivoAndIntegrated') === 'true');
+      applyArquivoIntegratedVisibility(developerShowArquivoAndIntegrated);
+
+      if (frSidebarBookmarksCb) frSidebarBookmarksCb.checked = (localStorage.getItem('bookmarksInSidebar') === 'true');
+      try {
+        customApps = JSON.parse(localStorage.getItem('customApps') || '[]');
+      } catch(e) {}
+      renderCustomApps();
+
       const t = localStorage.getItem('theme'); if (t) applyThemePreview(t);
       const se = localStorage.getItem('searchEngine'); if (se){ selectedSearch = se; }
       // Quick settings fallback
@@ -296,7 +546,8 @@
             if (sbarApps.includes(cb.value)) cb.checked = true;
         });
       } catch(e) {}
-      applySearchSelection();
+      if (availableSearchEngines.length > 0) renderSearchTiles();
+      else applySearchSelection();
     }
   }
 
@@ -310,21 +561,29 @@
     "ia_calendar": { name: "Calendar", icon: "icon-calendar", cat: "integrated" },
     "ia_notes": { name: "Notes", icon: "icon-notes", cat: "integrated" },
     "tp_discord": { name: "Discord", icon: "favicon", domain: "discord.com", cat: "thirdparty" },
-    "tp_mastodon": { name: "Mastodon", icon: "favicon", domain: "mastodon.social", cat: "thirdparty" }
+    "tp_mastodon": { name: "Mastodon", icon: "favicon", domain: "mastodon.social", cat: "thirdparty" },
+    "tp_youtube": { name: "YouTube", icon: "favicon", domain: "youtube.com", cat: "thirdparty" },
+    "tp_cheeter_hosting": { name: "Cheeter Hosting", icon: "favicon", domain: "hosting.cheeter.de", cat: "thirdparty" },
+    "tp_cheeter": { name: "Cheeter", icon: "favicon", domain: "cheeter.de", cat: "thirdparty" }
   };
 
   function updateAppIcons() {
     document.querySelectorAll(".sidebar-app-cb").forEach(checkbox => {
       const appId = checkbox.value;
-      const appInfo = AVAILABLE_APPS[appId];
+      const appInfo = AVAILABLE_APPS[appId] || customApps.find(a => a.id === appId);
       if (!appInfo) return;
 
       const label = checkbox.closest('.app-item');
       if (!label) return;
 
-      // Remove old icon element
-      const oldIcon = label.querySelector('svg, img[data-app-favicon]');
-      if (oldIcon) oldIcon.remove();
+      // If an icon already exists, clean up any duplicates and keep only 1
+      const existingIcons = label.querySelectorAll('svg, img:not(.custom-app-dummy-cb):not(.custom-app-preview-icon)');
+      if (existingIcons.length > 0) {
+        for (let i = 1; i < existingIcons.length; i++) {
+          existingIcons[i].remove();
+        }
+        return;
+      }
 
       // Create and insert correct icon
       let iconElement;
@@ -411,6 +670,8 @@
       if (typeof frRestoreLastSession !== 'undefined') window.electronAPI.setSetting('restoreLastSession', !!frRestoreLastSession.checked);
       if (typeof frUsernameInput !== 'undefined' && frUsernameInput.value) window.electronAPI.setSetting('username', frUsernameInput.value.trim());
       if (typeof frCustomHomepageInput !== 'undefined' && frCustomHomepageInput.value) window.electronAPI.setSetting('homepage', frCustomHomepageInput.value.trim());
+      if (typeof frSidebarBookmarksCb !== 'undefined' && frSidebarBookmarksCb) window.electronAPI.setSetting('bookmarksInSidebar', !!frSidebarBookmarksCb.checked);
+      window.electronAPI.setSetting('customApps', customApps);
       const sidebarApps = Array.from(document.querySelectorAll(".sidebar-app-cb:checked")).map(cb => cb.value);
       if (!sidebarApps.includes('ia_rss')) sidebarApps.push('ia_rss');
       window.electronAPI.setSetting('sidebarApps', sidebarApps);
@@ -424,6 +685,8 @@
       if (typeof frRestoreLastSession !== 'undefined') localStorage.setItem('restoreLastSession', frRestoreLastSession.checked);
       if (typeof frUsernameInput !== 'undefined' && frUsernameInput.value) localStorage.setItem('username', frUsernameInput.value.trim());
       if (typeof frCustomHomepageInput !== 'undefined' && frCustomHomepageInput.value) localStorage.setItem('homepage', frCustomHomepageInput.value.trim());
+      if (typeof frSidebarBookmarksCb !== 'undefined' && frSidebarBookmarksCb) localStorage.setItem('bookmarksInSidebar', String(!!frSidebarBookmarksCb.checked));
+      localStorage.setItem('customApps', JSON.stringify(customApps));
       const sidebarApps = Array.from(document.querySelectorAll(".sidebar-app-cb:checked")).map(cb => cb.value);
       if (!sidebarApps.includes('ia_rss')) sidebarApps.push('ia_rss');
       localStorage.setItem('sidebarApps', JSON.stringify(sidebarApps));

@@ -83,6 +83,7 @@ if (isTrustedOrigin()) {
         getKeyPassXCStatus: () => ipcRenderer.invoke('get-keypassxc-status'),
         getKeyPassXCEntries: () => ipcRenderer.invoke('get-keypassxc-entries'),
         // App info
+        getPageTitle: (url) => ipcRenderer.invoke('get-page-title', url),
         getAppVersion: () => ipcRenderer.invoke('get-app-version'),
         completeFirstRun: () => ipcRenderer.send('complete-onboarding'),
         // Manipulation (background bots)

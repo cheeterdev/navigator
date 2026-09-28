@@ -1016,6 +1016,7 @@ if (window.electronAPI.onBookmarkAdded) {
         bookmarks.push({ title: data.title, url: data.url });
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
         renderBookmarks();
+        renderSidebarApps(currentSidebarAppIds);
         updateButtonUI(urlInput.value);
     });
 }
@@ -1025,6 +1026,7 @@ if (window.electronAPI.onBookmarkRemoved) {
         bookmarks = bookmarks.filter(b => b.url !== data.url);
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
         renderBookmarks();
+        renderSidebarApps(currentSidebarAppIds);
         updateButtonUI(urlInput.value);
     });
 }
@@ -1164,6 +1166,7 @@ addBtn.addEventListener('click', () => {
     bookmarks.push({ title, url: currentUrl });
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     renderBookmarks();
+    renderSidebarApps(currentSidebarAppIds);
     updateButtonUI(currentUrl);
 });
 
@@ -1172,12 +1175,13 @@ cancelBtn.addEventListener('click', () => {
     bookmarks = bookmarks.filter(b => b.url !== currentUrl);
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     renderBookmarks();
+    renderSidebarApps(currentSidebarAppIds);
     updateButtonUI(currentUrl);
 });
 
 function renderBookmarks() {
     bookmarkBar.innerHTML = '';
-    if (bookmarks.length > 0) {
+    if (!bookmarksInSidebar && bookmarks.length > 0) {
         bookmarkBar.style.display = 'flex';
         bookmarks.forEach(bm => {
             const item = createBookmarkElement(bm.title, bm.url);
@@ -1308,6 +1312,11 @@ window.addEventListener("click", (e) => {
 
 window.addEventListener('resize', syncViewWithUI);
 
+// --- Sidebar Apps Logic (variables declared here so renderBookmarks() can safely reference bookmarksInSidebar) ---
+let bookmarksInSidebar = (localStorage.getItem("bookmarksInSidebar") === "true");
+let customApps = JSON.parse(localStorage.getItem("customApps") || "[]");
+let currentSidebarAppIds = JSON.parse(localStorage.getItem("sidebarApps") || "[]");
+
 // Start
 renderBookmarks();
 createNewTab();
@@ -1316,7 +1325,6 @@ setTimeout(() => {
     window.electronAPI.getWindowTabs?.();
 }, 100);
 
-// --- Sidebar Apps Logic ---
 const AVAILABLE_APPS = {
     "ab_ftp": { name: "Arquivo FTP", url: "https://arquivo.cheeter.de/ftp", icon: "icon-arquivo-ftp", cat: "arquivo" },
     "ab_photos": { name: "Arquivo Photos", url: "https://arquivo.cheeter.de/photos", icon: "icon-arquivo-photos", cat: "arquivo" },
@@ -1327,8 +1335,18 @@ const AVAILABLE_APPS = {
     "ia_notes": { name: "Notes", url: "https://notes.cheeter.de", icon: "icon-notes", cat: "integrated" },
     "ia_rss": { name: "RSS Settings", url: "https://rss.cheeter.de", panelUrl: "rss/index.html?mode=settings", icon: "icon-rss", cat: "integrated" },
     "tp_discord": { name: "Discord", url: "https://discord.com/app", icon: "favicon", domain: "discord.com", cat: "thirdparty" },
-    "tp_mastodon": { name: "Mastodon", url: "https://mastodon.social", icon: "favicon", domain: "mastodon.social", cat: "thirdparty" }
+    "tp_mastodon": { name: "Mastodon", url: "https://mastodon.social", icon: "favicon", domain: "mastodon.social", cat: "thirdparty" },
+    "tp_youtube": { name: "YouTube", url: "https://youtube.com", icon: "favicon", domain: "youtube.com", cat: "thirdparty" },
+    "tp_cheeter_hosting": { name: "Cheeter Hosting", url: "https://hosting.cheeter.de", icon: "favicon", domain: "hosting.cheeter.de", cat: "thirdparty" },
+    "tp_cheeter": { name: "Cheeter", url: "https://cheeter.de", icon: "favicon", domain: "cheeter.de", cat: "thirdparty" }
 };
+
+function getAppById(id) {
+    if (AVAILABLE_APPS[id]) return AVAILABLE_APPS[id];
+    const custom = customApps.find(a => a && a.id === id);
+    if (custom) return custom;
+    return null;
+}
 
 function ensureRssSidebarApp(selectedAppIds) {
     const list = Array.isArray(selectedAppIds) ? [...selectedAppIds] : [];
@@ -1337,6 +1355,7 @@ function ensureRssSidebarApp(selectedAppIds) {
 }
 
 function renderSidebarApps(selectedAppIds) {
+    currentSidebarAppIds = Array.isArray(selectedAppIds) ? selectedAppIds : currentSidebarAppIds;
     if (!sidebar) return;
 
     // Clear everything except #home
@@ -1344,15 +1363,16 @@ function renderSidebarApps(selectedAppIds) {
     sidebar.innerHTML = "";
     if (homeBtn) sidebar.appendChild(homeBtn);
 
-    const normalizedAppIds = ensureRssSidebarApp(selectedAppIds);
-    if (normalizedAppIds.length === 0) return;
+    const normalizedAppIds = ensureRssSidebarApp(currentSidebarAppIds);
 
     // Group selected apps by category to insert separators
     const grouped = { arquivo: [], integrated: [], thirdparty: [] };
     normalizedAppIds.forEach(id => {
-        const app = AVAILABLE_APPS[id];
+        const app = getAppById(id);
         if (app) {
-            grouped[app.cat].push({ id, ...app });
+            const cat = app.cat || "thirdparty";
+            if (!grouped[cat]) grouped[cat] = [];
+            grouped[cat].push({ id, ...app });
         }
     });
 
@@ -1365,7 +1385,7 @@ function renderSidebarApps(selectedAppIds) {
 
     catKeys.forEach(cat => {
         const apps = grouped[cat];
-        if (apps.length > 0) {
+        if (apps && apps.length > 0) {
             // Add separator if it is not the very first group
             if (!isFirstGroup) {
                 const hr = document.createElement("hr");
@@ -1382,8 +1402,12 @@ function renderSidebarApps(selectedAppIds) {
 
                 let iconHtml = "";
                 if (app.cat === "thirdparty" || app.icon === "favicon") {
-                    const faviconUrl = `https://www.google.com/s2/favicons?domain=${app.domain}&sz=64`;
-                    iconHtml = `<img src="${faviconUrl}" style="width: 20px; height: 20px; object-fit: contain; border-radius: 4px;">`;
+                    let domain = app.domain;
+                    if (!domain && app.url) {
+                        try { domain = new URL(app.url).hostname; } catch (e) { domain = getDomain(app.url); }
+                    }
+                    const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                    iconHtml = `<img src="${faviconUrl}" style="width: 20px; height: 20px; object-fit: contain; border-radius: 4px;" onerror="this.style.display='none'">`;
                 } else {
                     iconHtml = `<svg class="icon" style="width: 20px; height: 20px;"><use href="#${app.icon}"></use></svg>`;
                 }
@@ -1402,17 +1426,57 @@ function renderSidebarApps(selectedAppIds) {
             });
         }
     });
+
+    // Render bookmarks in sidebar if enabled
+    if (bookmarksInSidebar && bookmarks.length > 0) {
+        const bmHr = document.createElement("hr");
+        bmHr.style = "width: 80%; border-color: var(--border-color); margin: 8px 0; border-top: none; border-left: none; border-right: none;";
+        sidebar.appendChild(bmHr);
+
+        bookmarks.forEach(bm => {
+            const btn = document.createElement("button");
+            btn.className = "headerbtn";
+            btn.title = bm.title || bm.url;
+            btn.style = "justify-content: center; padding: 6px; border-radius: 8px; width: 100%; display: flex; align-items: center; margin-top: 4px;";
+            let domain = "";
+            try { domain = new URL(bm.url).hostname; } catch (e) { domain = getDomain(bm.url); }
+            const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+            btn.innerHTML = `<img src="${faviconUrl}" style="width: 20px; height: 20px; object-fit: contain; border-radius: 4px;" onerror="this.style.display='none'">`;
+            btn.addEventListener("click", () => {
+                if (urlInput) urlInput.value = bm.url;
+                requestNavigation(bm.url);
+            });
+            sidebar.appendChild(btn);
+        });
+    }
+}
+
+function applySettingsState(s) {
+    if (!s) return;
+    if (typeof s.bookmarksInSidebar !== 'undefined') {
+        bookmarksInSidebar = !!s.bookmarksInSidebar;
+        localStorage.setItem("bookmarksInSidebar", String(bookmarksInSidebar));
+    }
+    if (Array.isArray(s.customApps)) {
+        customApps = s.customApps;
+        localStorage.setItem("customApps", JSON.stringify(customApps));
+    }
+    if (Array.isArray(s.sidebarApps)) {
+        currentSidebarAppIds = s.sidebarApps;
+        localStorage.setItem("sidebarApps", JSON.stringify(currentSidebarAppIds));
+    }
+    renderBookmarks();
+    renderSidebarApps(currentSidebarAppIds);
 }
 
 // Load and apply sidebar apps on start
 if (window.electronAPI && window.electronAPI.getSettings) {
-    window.electronAPI.getSettings().then(s => {
-        renderSidebarApps(s && s.sidebarApps ? s.sidebarApps : []);
-    }).catch(() => { });
+    window.electronAPI.getSettings().then(applySettingsState).catch(() => { });
 
     if (window.electronAPI.onSettingsUpdated) {
-        window.electronAPI.onSettingsUpdated(s => {
-            renderSidebarApps(s && s.sidebarApps ? s.sidebarApps : []);
-        });
+        window.electronAPI.onSettingsUpdated(applySettingsState);
     }
+} else {
+    renderBookmarks();
+    renderSidebarApps(currentSidebarAppIds);
 }

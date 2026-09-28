@@ -96,6 +96,7 @@ out/
 
 # AI
 claude.md
+prompt.md
 
 # macOS
 build/.DS_Store

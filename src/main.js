@@ -989,6 +989,20 @@ const createWindow = () => {
     win.loadFile(indexPath);
   }
 
+  const maybeAutoOpenDevTools = () => {
+    if (settings.developerAutoOpenDevTools || settings.autoOpenDevTools) {
+      try {
+        if (!win.isDestroyed() && !win.webContents.isDevToolsOpened()) {
+          win.webContents.openDevTools({ mode: "detach" });
+        }
+      } catch (e) {
+        console.error("[main] failed to auto-open devtools", e);
+      }
+    }
+  };
+  win.once("ready-to-show", maybeAutoOpenDevTools);
+  win.webContents.once("did-finish-load", maybeAutoOpenDevTools);
+
   registerShortcutHandlers(win, win.webContents, false);
 
   const updateViewBounds = (uiHeight) => {
@@ -1337,6 +1351,48 @@ ipcMain.handle('fetch-rss-feed', async (event, url) => {
   }
 });
 
+ipcMain.handle('get-page-title', async (event, url) => {
+  if (!url || typeof url !== 'string') return null;
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') return null;
+    const hostname = parsed.hostname.toLowerCase();
+    if (
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1' ||
+      hostname === '::1' ||
+      hostname === '0.0.0.0' ||
+      hostname.endsWith('.local') ||
+      /^10\./.test(hostname) ||
+      /^172\.(1[6-9]|2\d|3[01])\./.test(hostname) ||
+      /^192\.168\./.test(hostname) ||
+      /^169\.254\./.test(hostname)
+    ) {
+      return null;
+    }
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3500);
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
+      signal: controller.signal,
+      redirect: 'follow',
+    });
+    clearTimeout(timeout);
+    if (!response.ok) return null;
+    const text = await response.text();
+    const match = text.match(/<title[^>]*>([^<]+)<\/title>/i);
+    if (match && match[1]) {
+      return match[1].trim();
+    }
+  } catch (e) {
+    return null;
+  }
+  return null;
+});
+
 function readLinesFromBuffer(buffer) {
   const lines = buffer.split(/\r\n|\n/).filter(Boolean);
   return lines;
@@ -1632,7 +1688,8 @@ const ALLOWED_SETTING_KEYS = new Set([
   'customSearchEngine', 'theme', 'themeColor', 'saveHistory', 'history', 'bookmarks',
   'restoreLastSession', 'disposableMode', 'startupType', 'startupPages', 'sidebarApps',
   'suspiciousHosts', 'firstRunComplete', 'dataManipulationInterval', 'dataManipulationIntervalSeconds',
-  'developerMode'
+  'developerMode', 'developerAutoOpenDevTools', 'autoOpenDevTools', 'developerShowCheeterSpace',
+  'developerShowArquivoAndIntegrated', 'customApps', 'bookmarksInSidebar'
 ]);
 
 ipcMain.on("set-setting", (event, { key, value }) => {

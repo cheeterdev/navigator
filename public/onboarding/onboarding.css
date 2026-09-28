@@ -568,19 +568,75 @@ body {
   }
 }
 
-/* welcome page tweaks */
-#welcome {
+/* Centered welcome screen */
+.onboarding-root.welcome-active .fr-header {
+  display: none;
+}
+
+.onboarding-root.welcome-active .fr-main {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.onboarding-root.welcome-active .fr-sections {
+  width: 100%;
+  min-height: 0;
+}
+
+.onboarding-root.welcome-active #welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 0 24px;
   text-align: center;
 }
 
-#welcome .section-title {
-  font-size: 20px;
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#welcome .section-desc {
+.welcome-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+.welcome-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.welcome-subtitle {
   font-size: 14px;
-  max-width: 600px;
-  margin: 0 auto;
+  opacity: 0.68;
+}
+
+.onboarding-root.welcome-active .fr-footer {
+  position: absolute;
+  top: calc(50% + 112px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  padding: 0;
+  border: 0;
+}
+
+.onboarding-root.welcome-active .fr-progress {
+  display: none;
+}
+
+.onboarding-root.welcome-active .fr-controls {
+  justify-content: center;
 }
 
 /* hide internal titles/descs since header shows them */

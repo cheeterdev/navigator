@@ -611,6 +611,7 @@
   function showSection(idx){
     // update header text before toggling sections
     updateHeaderForSection(idx);
+    document.querySelector('.onboarding-root')?.classList.toggle('welcome-active', hasWelcome && idx === 0);
     sections.forEach((s,i) => {
       s.style.display = i === idx ? (s.id === 'add-apps-setup' ? 'flex' : 'block') : 'none';
     });

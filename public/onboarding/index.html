@@ -353,29 +353,11 @@
         <section id="welcome" class="fr-section" data-header-title="Welcome to Setup"
           data-header-desc="Welcome to Cheeter Navigator! This quick setup will help you configure a few options so you can get started right away. You can always change these settings later in Preferences."
           data-header-icon="icon.png">
-          <h5 class="section-title">Welcome to Setup</h5>
-          <p class="section-desc" style="margin-bottom: 77px;">Welcome to Cheeter Navigator! This quick setup will help
-            you configure a few options so you can get started right away. You can of course always change these
-            settings later.</p>
-          <h5 class="section-title">What is Cheeter Navigator?</h5>
-          <p class="section-desc" style="margin-bottom: 77px;">Cheeter Navigator is a fast and secure web browser that
-            puts your privacy first. With a focus on speed and security, Cheeter Navigator ensures your online
-            experience is both fast and safe by adding featues like Private Browsing, Disposable Mode, Browser Spoofing
-            etc. keeping you never unprotected.</p>
-          <h5 class="section-title">Why is Cheeter Navigator better than your Browser?</h5>
-          <p class="section-desc" style="margin-bottom: 77px;">Cheeter Navigator is designed with a strong emphasis on
-            privacy and security. It offers features like Private Browsing, Disposable Mode, and Browser Spoofing to
-            protect your online activities from tracking and surveillance. With Cheeter Navigator, you can browse the
-            web with confidence, knowing that your data is secure and your privacy is respected.</p>
-          <h5 class="section-title">Support the development</h5>
-          <p class="section-desc" style="margin-bottom: 77px;">If you like Cheeter Navigator and want to support its
-            development, consider donating or contributing to the project. Your support helps us continue to improve and
-            provide a better browsing experience for everyone.</p>
-          <h5 class="section-title">How to contribute?</h5>
-          <p class="section-desc" style="margin-bottom: 77px;">You can contribute to Cheeter Navigator by reporting
-            bugs, suggesting new features, or even contributing code. Check out our <a
-              href="https://github.com/cheeterdev/navigator" target="_blank" style="color: var(--text-color);">GitHub
-              repository</a> for more information on how to get involved.</p>
+          <div class="welcome-content">
+            <img class="welcome-logo" src="icon.png" alt="Cheeter Navigator">
+            <h1 class="welcome-title">Welcome to Cheeter Navigator!</h1>
+            <p class="welcome-subtitle">Dive into a whole new private Browsing experience.</p>
+          </div>
         </section>
 
         <!-- THEME SETUP -->
@@ -557,9 +539,9 @@
         backdrop.style.cssText = "position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter: blur(8px);";
 
         container.style.width = '95%';
-        container.style.height = '95%';
+        container.style.height = '90%';
         container.style.maxWidth = '1100px';
-        container.style.maxHeight = '900px';
+        container.style.maxHeight = '760px';
         container.style.background = 'var(--bg-main)';
         container.style.borderRadius = '20px';
         container.style.boxShadow = '0 25px 60px rgba(0,0,0,0.7)';

@@ -7,6 +7,39 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import { spawn } from "node:child_process";
 
+function getRendererAssetPath(assetPath) {
+  const rendererDirectory = path.resolve(
+    app.getAppPath(),
+    ".vite",
+    "renderer",
+    MAIN_WINDOW_VITE_NAME,
+  );
+  const resolvedPath = path.resolve(rendererDirectory, assetPath);
+  const relativePath = path.relative(rendererDirectory, resolvedPath);
+
+  if (relativePath === ".." || relativePath.startsWith(`..${path.sep}`) || path.isAbsolute(relativePath)) {
+    throw new Error(`Renderer asset path is outside the renderer directory: ${assetPath}`);
+  }
+  if (!fs.existsSync(resolvedPath)) {
+    throw new Error(`Renderer asset not found: ${resolvedPath}`);
+  }
+
+  return resolvedPath;
+}
+
+function getRendererAssetUrl(assetPath, suffix = "") {
+  return `${pathToFileURL(getRendererAssetPath(assetPath)).href}${suffix}`;
+}
+
+function isSettingsPageUrl(url) {
+  try {
+    const pathname = new URL(url).pathname.replace(/\\/g, "/");
+    return pathname.endsWith("/settings/index.html") || pathname.includes("/public/settings/");
+  } catch {
+    return false;
+  }
+}
+
 // SECURITY: Validate sender origin for all IPC handlers
 const originalOn = ipcMain.on;
 const originalHandle = ipcMain.handle;
@@ -974,17 +1007,7 @@ const createWindow = () => {
   if (typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined") {
     win.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    const resolveRendererPath = (p) => {
-      const candidates = [
-        path.join(__dirname, "../..", ".vite", "renderer", MAIN_WINDOW_VITE_NAME, p),
-        path.join(__dirname, "../renderer", MAIN_WINDOW_VITE_NAME, p),
-        path.join(__dirname, "../..", p),
-      ];
-      for (const c of candidates) if (fs.existsSync(c)) return c;
-      return candidates[0];
-    };
-
-    const indexPath = resolveRendererPath("index.html");
+    const indexPath = getRendererAssetPath("index.html");
     console.log("[main] loading index file:", indexPath);
     win.loadFile(indexPath);
   }
@@ -1082,16 +1105,7 @@ const bookmarkDropdownWindow = (bounds, sourceWindow) => {
   if (typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined") {
     bookmarkWindow.loadURL(`${MAIN_WINDOW_VITE_DEV_SERVER_URL}/dropdown/bookmark.html`);
   } else {
-    const resolveRendererPath = (p) => {
-      const candidates = [
-        path.join(__dirname, "../..", ".vite", "renderer", MAIN_WINDOW_VITE_NAME, p),
-        path.join(__dirname, "../renderer", MAIN_WINDOW_VITE_NAME, p),
-        path.join(__dirname, "../..", p),
-      ];
-      for (const c of candidates) if (fs.existsSync(c)) return c;
-      return candidates[0];
-    };
-    const bookmarkPath = resolveRendererPath("dropdown/bookmark.html");
+    const bookmarkPath = getRendererAssetPath("dropdown/bookmark.html");
     console.log("[main] loading bookmark dropdown:", bookmarkPath);
     bookmarkWindow.loadFile(bookmarkPath);
   }
@@ -1136,16 +1150,7 @@ const menuDropdownWindow = (bounds, sourceWindow) => {
   if (typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined") {
     menuWindow.loadURL(`${MAIN_WINDOW_VITE_DEV_SERVER_URL}/dropdown/menu.html`);
   } else {
-    const resolveRendererPath = (p) => {
-      const candidates = [
-        path.join(__dirname, "../..", ".vite", "renderer", MAIN_WINDOW_VITE_NAME, p),
-        path.join(__dirname, "../renderer", MAIN_WINDOW_VITE_NAME, p),
-        path.join(__dirname, "../..", p),
-      ];
-      for (const c of candidates) if (fs.existsSync(c)) return c;
-      return candidates[0];
-    };
-    const menuPath = resolveRendererPath("dropdown/menu.html");
+    const menuPath = getRendererAssetPath("dropdown/menu.html");
     console.log("[main] loading menu dropdown:", menuPath);
     menuWindow.loadFile(menuPath);
   }
@@ -1701,7 +1706,7 @@ ipcMain.on("set-setting", (event, { key, value }) => {
     }
 
     const url = event && event.sender && event.sender.getURL ? event.sender.getURL() : "";
-    if (url && url.includes("/public/settings/") && !isAuthenticated()) {
+    if (isSettingsPageUrl(url) && !isAuthenticated()) {
       if (event && event.sender) event.sender.send("auth-required");
       return;
     }
@@ -2199,9 +2204,15 @@ function createThirdPartyPanelView(sourceWindow, appId, resourceUrl) {
 
   let loadUrl = resourceUrl;
   if (typeof loadUrl === 'string' && !/^https?:\/\//i.test(loadUrl) && !/^file:\/\//i.test(loadUrl)) {
-    loadUrl = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
-      ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/${loadUrl}`
-      : `file://${path.join(__dirname, '../public', loadUrl)}`;
+    if (typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined') {
+      loadUrl = `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/${loadUrl}`;
+    } else {
+      const assetUrl = new URL(loadUrl, "file:///");
+      loadUrl = getRendererAssetUrl(
+        decodeURIComponent(assetUrl.pathname.slice(1)),
+        `${assetUrl.search}${assetUrl.hash}`,
+      );
+    }
   }
 
   view.webContents.loadURL(loadUrl);
@@ -2264,7 +2275,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
     isStartUri = true;
     url = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
       ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/startpage/index.html`
-      : `file://${path.join(__dirname, '../public/startpage/index.html')}`;
+      : getRendererAssetUrl("startpage/index.html");
   }
 
   const tabs = windowTabs.get(sourceWindow) || [];
@@ -2323,7 +2334,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
             const reason = (typeof match === 'object' && match.reason) ? match.reason : undefined;
             let warningPath = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
               ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/errors/suspicious-warning.html?host=${encodeURIComponent(host)}&url=${encodeURIComponent(newUrl)}`
-              : `file://${path.join(__dirname, '../errors/suspicious-warning.html')}?host=${encodeURIComponent(host)}&url=${encodeURIComponent(newUrl)}`;
+              : `${getRendererAssetUrl("errors/suspicious-warning.html")}?host=${encodeURIComponent(host)}&url=${encodeURIComponent(newUrl)}`;
             if (reason) warningPath += `&reason=${encodeURIComponent(reason)}`;
             view.webContents.loadURL(warningPath);
             tab.requestedUrl = newUrl;
@@ -2371,7 +2382,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
       if (isNetworkErr) {
         const offlinePath = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
           ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/errors/offline.html`
-          : `file://${path.join(__dirname, '../errors/offline.html')}`;
+          : getRendererAssetUrl("errors/offline.html");
         try { view.webContents.loadURL(offlinePath); } catch (e) { }
       }
     });
@@ -2385,7 +2396,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
             if (details.resourceType === 'mainFrame' && details.statusCode === 404) {
               const offlinePath = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
                 ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/errors/offline.html?url=${encodeURIComponent(details.url)}`
-                : `file://${path.join(__dirname, '../errors/offline.html')}?url=${encodeURIComponent(details.url)}`;
+                : `${getRendererAssetUrl("errors/offline.html")}?url=${encodeURIComponent(details.url)}`;
               view.webContents.loadURL(offlinePath);
             }
           } catch (e) { }
@@ -2482,7 +2493,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
                 const reason = (typeof match === 'object' && match.reason) ? match.reason : undefined;
                 let warningPath = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
                   ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/errors/suspicious-warning.html?host=${encodeURIComponent(host)}&url=${encodeURIComponent(newUrl)}`
-                  : `file://${path.join(__dirname, '../errors/suspicious-warning.html')}?host=${encodeURIComponent(host)}&url=${encodeURIComponent(newUrl)}`;
+                  : `${getRendererAssetUrl("errors/suspicious-warning.html")}?host=${encodeURIComponent(host)}&url=${encodeURIComponent(newUrl)}`;
                 if (reason) warningPath += `&reason=${encodeURIComponent(reason)}`;
                 view.webContents.loadURL(warningPath);
                 tab.requestedUrl = newUrl;
@@ -2524,7 +2535,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
           if (isNetworkErr) {
             const offlinePath = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
               ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/errors/offline.html`
-              : `file://${path.join(__dirname, '../errors/offline.html')}`;
+              : getRendererAssetUrl("errors/offline.html");
             try { view.webContents.loadURL(offlinePath); } catch (e) { }
           }
         });
@@ -2538,7 +2549,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
                 if (details.resourceType === 'mainFrame' && details.statusCode === 404) {
                   const offlinePath = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== 'undefined'
                     ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/errors/offline.html?url=${encodeURIComponent(details.url)}`
-                    : `file://${path.join(__dirname, '../errors/offline.html')}?url=${encodeURIComponent(details.url)}`;
+                    : `${getRendererAssetUrl("errors/offline.html")}?url=${encodeURIComponent(details.url)}`;
                   view.webContents.loadURL(offlinePath);
                 }
               } catch (e) { }
@@ -2588,14 +2599,7 @@ ipcMain.on("navigate-to", (event, { url, isPersistent, tabId }) => {
         if (typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined") {
           finalUrl = `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/${pathPart}${suffix}`;
         } else {
-          const candidates = [
-            path.join(__dirname, "../..", pathPart),
-            path.join(__dirname, "../..", ".vite", "renderer", MAIN_WINDOW_VITE_NAME, pathPart),
-            path.join(__dirname, "../renderer", MAIN_WINDOW_VITE_NAME, pathPart),
-          ];
-          let found = candidates.find((p) => fs.existsSync(p));
-          if (!found) found = candidates[0];
-          finalUrl = `file://${found}${suffix}`;
+          finalUrl = getRendererAssetUrl(pathPart, suffix);
         }
       } else {
         if (tab) {
@@ -3290,6 +3294,18 @@ function showOverlayView(win, url) {
   if (!win || win.isDestroyed()) return;
   hideOverlayView(win);
 
+  let loadUrl = url;
+  if (url.startsWith("navigator://settings")) {
+    const hash = url.includes("#") ? url.substring(url.indexOf("#")) : "";
+    loadUrl = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined"
+      ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/settings/index.html${hash}`
+      : getRendererAssetUrl("settings/index.html", hash);
+  } else if (url.startsWith("navigator://onboarding")) {
+    loadUrl = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined"
+      ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/onboarding/index.html`
+      : getRendererAssetUrl("onboarding/index.html");
+  }
+
   const view = new WebContentsView({
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -3304,20 +3320,10 @@ function showOverlayView(win, url) {
 
   win.contentView.addChildView(view);
   overlayViewMap.set(win.id, view);
-
-  let loadUrl = url;
-  if (url.startsWith("navigator://settings")) {
-    const hash = url.includes("#") ? url.substring(url.indexOf("#")) : "";
-    loadUrl = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined"
-      ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/settings/index.html${hash}`
-      : `file://${path.join(__dirname, "../public/settings/index.html")}${hash}`;
-  } else if (url.startsWith("navigator://onboarding")) {
-    loadUrl = typeof MAIN_WINDOW_VITE_DEV_SERVER_URL !== "undefined"
-      ? `${MAIN_WINDOW_VITE_DEV_SERVER_URL}/onboarding/index.html`
-      : `file://${path.join(__dirname, "../public/onboarding/index.html")}`;
-  }
-
-  view.webContents.loadURL(loadUrl);
+  view.webContents.loadURL(loadUrl).catch((error) => {
+    console.error(`[overlay] failed to load ${loadUrl}:`, error);
+    if (overlayViewMap.get(win.id) === view) hideOverlayView(win);
+  });
 
   const onResize = () => {
     if (!win.isDestroyed() && !view.webContents.isDestroyed()) {

@@ -331,7 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const randomBg = bgImages[Math.floor(Math.random() * bgImages.length)];
-    const imgUrl = `/assets/bg/${encodeURIComponent(randomBg)}`;
+    const imgUrl = new URL(`../assets/bg/${encodeURIComponent(randomBg)}`, document.baseURI).href;
 
     // Preload image for smoother transition
     const img = new Image();

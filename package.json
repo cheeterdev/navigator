@@ -1,6 +1,7 @@
 {
   "name": "cheeternavigator",
   "productName": "Cheeter Navigator",
+  "desktopName": "de.cheeter.navigator",
   "version": "2.0.0",
   "description": "A whole different browsing experience.",
   "homepage": "https://navigator.cheeter.de",
@@ -14,6 +15,10 @@
     "lint": "echo \"No linting configured\"",
     "pack": "npm run package && electron-builder --dir",
     "dist": "npm run package && electron-builder",
+    "dist:mac": "npm run package && electron-builder --mac",
+    "dist:win": "npm run package && electron-builder --win",
+    "dist:linux": "npm run package && electron-builder --linux",
+    "dist:all": "npm run package && electron-builder --mac --win --linux",
     "app:dir": "electron-builder --dir",
     "app:dist": "electron-builder"
   },
@@ -42,7 +47,7 @@
     "electron-squirrel-startup": "^1.0.1"
   },
   "build": {
-    "appId": "cheeternavigator",
+    "appId": "de.cheeter.navigator",
     "productName": "Cheeter Navigator",
     "directories": {
       "output": "dist",
@@ -82,22 +87,60 @@
       "icon": "build/icon.icns",
       "category": "internet",
       "target": [
-        "dmg"
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
       ]
     },
     "win": {
       "icon": "build/icon.ico",
       "target": [
-        "nsis",
-        "zip"
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
       ]
     },
     "linux": {
       "icon": "build/icon.png",
+      "category": "Network",
+      "syncDesktopName": true,
       "target": [
-        "AppImage",
-        "deb",
-        "snap"
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "snap",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
       ]
     }
   },

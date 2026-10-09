@@ -1,6 +1,6 @@
 # Introducing Cheeter Navigator
 
-
+![App Preview](image.png)
 
 This is our Browser "Cheeter Navigator", which offers privacy features such as:
 
